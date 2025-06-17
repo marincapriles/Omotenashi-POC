@@ -19,7 +19,8 @@ from pydantic import BaseModel
 from langchain.agents import AgentType, initialize_agent
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import BaseMessage, SystemMessage
-from langchain.tools import Tool
+from langchain.tools import Tool, StructuredTool
+from pydantic import BaseModel, Field
 from langchain_chroma import Chroma
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
@@ -104,13 +105,21 @@ class VectorStoreService:
             return "Property knowledge base not available."
         
         try:
-            docs = self.retriever.get_relevant_documents(
-                query, 
-                filter={"property_id": property_id}
-            )
-            return "\n---\n".join(d.page_content for d in docs) or "No relevant information found."
+            logger.info(f"Searching property info for property_id: {property_id}, query: {query}")
+            
+            # Use the new invoke method instead of deprecated get_relevant_documents
+            docs = self.retriever.invoke(query)
+            
+            if docs:
+                result = "\n---\n".join(d.page_content for d in docs)
+                logger.info(f"Found {len(docs)} documents for property info query")
+                return result
+            else:
+                logger.warning("No documents found for property info query")
+                return "No relevant information found."
+                
         except Exception as e:
-            logger.error(f"Error retrieving property info: {e}")
+            logger.error(f"Error retrieving property info for {property_id}: {e}", exc_info=True)
             return "Error retrieving property information."
 
 class GuestService:
@@ -252,29 +261,70 @@ def create_guest_tools(phone_number: str) -> List[Tool]:
     
     def get_property_info(query: str = "general information") -> str:
         """Get property information."""
-        guest = guest_service.get_guest(phone_number)
-        if not guest:
-            return "Guest not found."
-        
-        booking = guest_service.get_booking(guest["guest_id"])
-        if not booking:
-            return "Booking not found."
-        
-        return vector_store.get_property_info(booking["property_id"], query)
+        try:
+            guest = guest_service.get_guest(phone_number)
+            if not guest:
+                return "Guest not found."
+            
+            booking = guest_service.get_booking(guest["guest_id"])
+            if not booking:
+                return "Booking not found."
+            
+            logger.info(f"Getting property info for guest {guest.get('name', 'Unknown')} - property: {booking.get('property_id', 'Unknown')}")
+            return vector_store.get_property_info(booking["property_id"], query)
+        except Exception as e:
+            logger.error(f"Error in get_property_info tool: {e}", exc_info=True)
+            return "Sorry, I'm having trouble accessing property information right now."
+    
+    # Input schemas for structured tools
+    class CleaningInput(BaseModel):
+        cleaning_time: str = Field(description="When to schedule the cleaning")
+    
+    class CheckoutInput(BaseModel):
+        new_checkout_time: str = Field(description="New checkout time")
+    
+    class TransportInput(BaseModel):
+        pickup_time: str = Field(description="Pickup time")
+        airport_code: str = Field(description="Airport code")
+    
+    class PropertyInfoInput(BaseModel):
+        query: str = Field(default="general information", description="What to search for")
     
     return [
-        Tool(name="schedule_cleaning", func=schedule_cleaning, 
-             description=TOOL_DESCRIPTIONS["schedule_cleaning"]),
-        Tool(name="modify_checkout_time", func=modify_checkout_time,
-             description=TOOL_DESCRIPTIONS["modify_checkout_time"]),
-        Tool(name="request_transport", func=request_transport,
-             description=TOOL_DESCRIPTIONS["request_transport"]),
-        Tool(name="guest_profile", func=get_guest_profile,
-             description=TOOL_DESCRIPTIONS["guest_profile"]),
-        Tool(name="booking_details", func=get_booking_details,
-             description=TOOL_DESCRIPTIONS["booking_details"]),
-        Tool(name="property_info", func=get_property_info,
-             description=TOOL_DESCRIPTIONS["property_info"]),
+        StructuredTool.from_function(
+            func=schedule_cleaning,
+            args_schema=CleaningInput,
+            name="schedule_cleaning",
+            description=TOOL_DESCRIPTIONS["schedule_cleaning"]
+        ),
+        StructuredTool.from_function(
+            func=modify_checkout_time,
+            args_schema=CheckoutInput,
+            name="modify_checkout_time",
+            description=TOOL_DESCRIPTIONS["modify_checkout_time"]
+        ),
+        StructuredTool.from_function(
+            func=request_transport,
+            args_schema=TransportInput,
+            name="request_transport",
+            description=TOOL_DESCRIPTIONS["request_transport"]
+        ),
+        StructuredTool.from_function(
+            func=get_guest_profile,
+            name="guest_profile",
+            description=TOOL_DESCRIPTIONS["guest_profile"]
+        ),
+        StructuredTool.from_function(
+            func=get_booking_details,
+            name="booking_details",
+            description=TOOL_DESCRIPTIONS["booking_details"]
+        ),
+        StructuredTool.from_function(
+            func=get_property_info,
+            args_schema=PropertyInfoInput,
+            name="property_info",
+            description=TOOL_DESCRIPTIONS["property_info"]
+        ),
     ]
 
 # ----------------------------------------------------------------------------
@@ -283,26 +333,35 @@ def create_guest_tools(phone_number: str) -> List[Tool]:
 
 def create_agent(phone: str, custom_prompt: Optional[str] = None):
     """Create a personalized agent for a specific guest."""
-    guest = guest_service.get_guest(phone)
-    booking = guest_service.get_booking(guest["guest_id"]) if guest else None
-    
-    # Create personalized system prompt
-    guest_context = format_guest_context(guest, booking)
-    base_prompt = get_base_system_prompt(guest_context)
-    final_prompt = combine_prompts(base_prompt, custom_prompt)
-    
-    # Create guest-specific tools and agent
-    tools = create_guest_tools(phone)
-    llm = ChatOpenAI(model_name=OPENAI_MODEL, temperature=0, openai_api_key=OPENAI_API_KEY)
-    
-    return initialize_agent(
-        tools=tools,
-        llm=llm,
-        agent=AgentType.OPENAI_FUNCTIONS,
-        memory=memory_service.get_memory(phone),
-        system_message=SystemMessage(content=final_prompt),
-        verbose=False,
-    )
+    try:
+        guest = guest_service.get_guest(phone)
+        booking = None
+        
+        if guest and "guest_id" in guest:
+            booking = guest_service.get_booking(guest["guest_id"])
+        
+        # Create personalized system prompt
+        guest_context = format_guest_context(guest, booking)
+        base_prompt = get_base_system_prompt(guest_context)
+        final_prompt = combine_prompts(base_prompt, custom_prompt)
+        
+        # Create guest-specific tools and agent
+        tools = create_guest_tools(phone)
+        llm = ChatOpenAI(model_name=OPENAI_MODEL, temperature=0, openai_api_key=OPENAI_API_KEY)
+        
+        logger.info(f"Creating agent for phone: {phone}, guest found: {guest is not None}")
+        
+        return initialize_agent(
+            tools=tools,
+            llm=llm,
+            agent=AgentType.OPENAI_FUNCTIONS,
+            memory=memory_service.get_memory(phone),
+            system_message=SystemMessage(content=final_prompt),
+            verbose=False,
+        )
+    except Exception as e:
+        logger.error(f"Error creating agent for phone {phone}: {e}")
+        raise
 
 # ----------------------------------------------------------------------------
 # API Endpoints
@@ -323,18 +382,60 @@ async def get_all_guests():
         logger.error(f"Error retrieving guest profiles: {e}")
         raise HTTPException(status_code=500, detail="Failed to retrieve guest profiles")
 
+@app.get("/debug/status")
+async def debug_status():
+    """Debug endpoint to check system status."""
+    return {
+        "status": "ok",
+        "guests_loaded": len(guest_service.guests_by_phone),
+        "bookings_loaded": len(guest_service.bookings_by_guest),
+        "active_sessions": len(memory_service.memory_store),
+        "vector_store_ready": vector_store.retriever is not None
+    }
+
 @app.post("/message", response_model=MessageResponse)
 async def handle_message(request: MessageRequest):
     """Handle chat message from guest."""
     try:
+        logger.info(f"Handling message from phone: {request.phone_number}")
+        logger.info(f"Message: {request.message[:100]}...")  # Log first 100 chars
+        
+        # Validate request
+        if not request.phone_number:
+            raise HTTPException(status_code=400, detail="Phone number is required")
+        if not request.message.strip():
+            raise HTTPException(status_code=400, detail="Message cannot be empty")
+        
         agent = create_agent(request.phone_number, request.system_prompt)
-        response = agent.invoke({"input": request.message})["output"]
+        logger.info("Agent created successfully")
+        
+        # Try to invoke the agent with detailed error handling
+        try:
+            logger.info("About to invoke agent...")
+            result = agent.invoke({"input": request.message})
+            logger.info(f"Agent invoke result type: {type(result)}")
+            logger.info(f"Agent invoke result keys: {result.keys() if isinstance(result, dict) else 'Not a dict'}")
+            
+            if isinstance(result, dict) and "output" in result:
+                response = result["output"]
+            else:
+                logger.error(f"Unexpected agent result format: {result}")
+                response = "I apologize, but I'm having trouble processing your request right now."
+                
+        except Exception as agent_error:
+            logger.error(f"Agent invoke error: {agent_error}", exc_info=True)
+            response = "I'm sorry, I'm experiencing technical difficulties. Please try again."
+        
+        logger.info("Agent response generated successfully")
+        
         memory_service.cleanup_expired()
         
         return MessageResponse(response=response, session_id=request.phone_number)
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Error handling message: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error handling message from {request.phone_number}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 @app.get("/session/{phone}", response_model=SessionResponse)
 async def get_session(phone: str):
