@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omotenashi LLM Interface</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 16px;
+        resize: vertical;
+        min-height: 100px;
+        transition: border-color 0.3s ease;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: 0 auto;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+      }
+
+      .response {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .loading {
+        text-align: center;
+        margin: 20px 0;
+        display: none;
+      }
+
+      .error {
+        color: #e74c3c;
+        text-align: center;
+        margin: 10px 0;
+        display: none;
+      }
+
+      .system-prompt-toggle {
+        text-align: right;
+        margin-bottom: 10px;
+      }
+
+      .system-prompt-toggle button {
+        background: none;
+        border: none;
+        color: #3498db;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      .system-prompt-toggle button:hover {
+        text-decoration: underline;
+      }
+
+      .system-prompt-container {
+        display: none;
+        margin-bottom: 20px;
+      }
+
+      .system-prompt-container.visible {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Omotenashi LLM Interface</h1>
+
+      <div class="system-prompt-toggle">
+        <button onclick="toggleSystemPrompt()">Toggle System Prompt</button>
+      </div>
+
+      <div class="system-prompt-container" id="systemPromptContainer">
+        <div class="input-group">
+          <label for="systemPrompt">System Prompt (optional):</label>
+          <textarea
+            id="systemPrompt"
+            placeholder="Enter system prompt to guide the AI's behavior..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="prompt">Enter your prompt:</label>
+        <textarea id="prompt" placeholder="Type your prompt here..."></textarea>
+      </div>
+
+      <button id="generate" onclick="generateText()">Generate Response</button>
+
+      <div class="loading" id="loading">Generating response...</div>
+
+      <div class="error" id="error"></div>
+
+      <div class="response">
+        <label for="response">Response:</label>
+        <textarea id="response" readonly></textarea>
+      </div>
+    </div>
+
+    <script>
+      function toggleSystemPrompt() {
+        const container = document.getElementById("systemPromptContainer");
+        container.classList.toggle("visible");
+      }
+
+      async function generateText() {
+        const prompt = document.getElementById("prompt").value;
+        const systemPrompt = document.getElementById("systemPrompt").value;
+        const generateButton = document.getElementById("generate");
+        const loading = document.getElementById("loading");
+        const error = document.getElementById("error");
+        const response = document.getElementById("response");
+
+        if (!prompt.trim()) {
+          error.textContent = "Please enter a prompt";
+          error.style.display = "block";
+          return;
+        }
+
+        // Reset UI
+        error.style.display = "none";
+        generateButton.disabled = true;
+        loading.style.display = "block";
+        response.value = "";
+
+        try {
+          const result = await fetch("/generate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt,
+              system_prompt: systemPrompt.trim() || null,
+            }),
+          });
+
+          const data = await result.json();
+
+          if (!result.ok) {
+            throw new Error(data.detail || "Failed to generate response");
+          }
+
+          response.value = data.response;
+        } catch (err) {
+          error.textContent = err.message;
+          error.style.display = "block";
+        } finally {
+          generateButton.disabled = false;
+          loading.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
