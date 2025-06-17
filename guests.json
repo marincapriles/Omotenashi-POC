@@ -1,0 +1,16 @@
+[
+  {
+    "guest_id": "g1",
+    "name": "Carlos Marin",
+    "phone_number": "+14155550123",
+    "preferred_language": "English",
+    "vip_status": true
+  },
+  {
+    "guest_id": "g2",
+    "name": "María López",
+    "phone_number": "+14155559876",
+    "preferred_language": "Spanish",
+    "vip_status": false
+  }
+]

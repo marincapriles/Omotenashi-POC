@@ -3,220 +3,633 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Omotenashi LLM Interface</title>
+    <title>Omotenashi Hotel Concierge</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, sans-serif;
+          sans-serif;
         line-height: 1.6;
-        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
         padding: 20px;
-        background-color: #f5f5f5;
         color: #333;
       }
 
       .container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
-        background-color: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
       }
 
-      h1 {
-        color: #2c3e50;
-        margin-bottom: 30px;
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
         text-align: center;
       }
 
-      .input-group {
+      .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 300;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+      }
+
+      .main-content {
+        padding: 30px;
+      }
+
+      .guest-selection {
+        margin-bottom: 30px;
+      }
+
+      .guest-select {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 16px;
+        background: white;
+        transition: all 0.3s ease;
+      }
+
+      .guest-select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .guest-info {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+      }
+
+      .guest-info h3 {
+        color: #667eea;
+        margin-bottom: 10px;
+      }
+
+      .guest-info p {
+        margin: 5px 0;
+        color: #666;
+      }
+
+      .chat-container {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        min-height: 400px;
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .message {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .message.user {
+        justify-content: flex-end;
+      }
+
+      .message-content {
+        max-width: 70%;
+        padding: 15px 20px;
+        border-radius: 20px;
+        position: relative;
+      }
+
+      .message.user .message-content {
+        background: #667eea;
+        color: white;
+        border-bottom-right-radius: 5px;
+      }
+
+      .message.assistant .message-content {
+        background: white;
+        border: 1px solid #e1e5e9;
+        border-bottom-left-radius: 5px;
+      }
+
+      .message-role {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        opacity: 0.7;
+      }
+
+      .input-section {
+        display: flex;
+        gap: 15px;
         margin-bottom: 20px;
       }
 
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: #2c3e50;
-      }
-
-      textarea {
-        width: 100%;
-        padding: 12px;
-        border: 2px solid #e0e0e0;
-        border-radius: 6px;
+      .message-input {
+        flex: 1;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 25px;
         font-size: 16px;
-        resize: vertical;
-        min-height: 100px;
-        transition: border-color 0.3s ease;
+        resize: none;
+        transition: all 0.3s ease;
       }
 
-      textarea:focus {
+      .message-input:focus {
         outline: none;
-        border-color: #3498db;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       }
 
-      button {
-        background-color: #3498db;
+      .send-button {
+        background: #667eea;
         color: white;
         border: none;
-        padding: 12px 24px;
-        border-radius: 6px;
+        padding: 15px 30px;
+        border-radius: 25px;
         font-size: 16px;
+        font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.3s ease;
-        display: block;
-        margin: 0 auto;
+        transition: all 0.3s ease;
+        white-space: nowrap;
       }
 
-      button:hover {
-        background-color: #2980b9;
+      .send-button:hover:not(:disabled) {
+        background: #5a6fd8;
+        transform: translateY(-2px);
       }
 
-      button:disabled {
-        background-color: #bdc3c7;
+      .send-button:disabled {
+        background: #ccc;
         cursor: not-allowed;
+        transform: none;
       }
 
-      .response {
-        margin-top: 30px;
-        padding: 20px;
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        border: 1px solid #e0e0e0;
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .control-button {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .control-button:hover {
+        background: #218838;
+      }
+
+      .control-button.secondary {
+        background: #6c757d;
+      }
+
+      .control-button.secondary:hover {
+        background: #5a6268;
       }
 
       .loading {
         text-align: center;
+        padding: 20px;
+        color: #667eea;
+        display: none;
+      }
+
+      .loading::after {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #667eea;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 10px;
         margin: 20px 0;
         display: none;
       }
 
-      .error {
-        color: #e74c3c;
-        text-align: center;
-        margin: 10px 0;
-        display: none;
-      }
-
-      .system-prompt-toggle {
-        text-align: right;
-        margin-bottom: 10px;
-      }
-
-      .system-prompt-toggle button {
-        background: none;
-        border: none;
-        color: #3498db;
-        padding: 5px 10px;
-        font-size: 14px;
-        cursor: pointer;
-        margin: 0;
-      }
-
-      .system-prompt-toggle button:hover {
-        text-decoration: underline;
-      }
-
-      .system-prompt-container {
-        display: none;
+      .system-prompt-section {
         margin-bottom: 20px;
+        display: none;
       }
 
-      .system-prompt-container.visible {
+      .system-prompt-section.visible {
         display: block;
+      }
+
+      .system-prompt-input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 14px;
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .system-prompt-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #666;
+        padding: 40px 20px;
+      }
+
+      .empty-state h3 {
+        margin-bottom: 10px;
+        color: #667eea;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 10px;
+          border-radius: 15px;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .main-content {
+          padding: 20px;
+        }
+
+        .input-section {
+          flex-direction: column;
+        }
+
+        .message-content {
+          max-width: 85%;
+        }
+
+        .controls {
+          flex-wrap: wrap;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Omotenashi LLM Interface</h1>
-
-      <div class="system-prompt-toggle">
-        <button onclick="toggleSystemPrompt()">Toggle System Prompt</button>
+      <div class="header">
+        <h1>🏨 Omotenashi</h1>
+        <p>Your Personal Hotel Concierge Assistant</p>
       </div>
 
-      <div class="system-prompt-container" id="systemPromptContainer">
-        <div class="input-group">
-          <label for="systemPrompt">System Prompt (optional):</label>
+      <div class="main-content">
+        <!-- Guest Selection -->
+        <div class="guest-selection">
+          <label for="guestSelect">Select Guest:</label>
+          <select id="guestSelect" class="guest-select">
+            <option value="">Choose a guest...</option>
+          </select>
+
+          <div id="guestInfo" class="guest-info">
+            <h3>Guest Information</h3>
+            <div id="guestDetails"></div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <button id="newChatBtn" class="control-button">New Chat</button>
+          <button id="toggleSystemPrompt" class="control-button secondary">
+            Custom Instructions
+          </button>
+        </div>
+
+        <!-- System Prompt -->
+        <div id="systemPromptSection" class="system-prompt-section">
+          <label for="systemPrompt">Custom Instructions:</label>
           <textarea
             id="systemPrompt"
-            placeholder="Enter system prompt to guide the AI's behavior..."
+            class="system-prompt-input"
+            placeholder="Enter custom instructions for the assistant..."
           ></textarea>
         </div>
-      </div>
 
-      <div class="input-group">
-        <label for="prompt">Enter your prompt:</label>
-        <textarea id="prompt" placeholder="Type your prompt here..."></textarea>
-      </div>
+        <!-- Chat Container -->
+        <div id="chatContainer" class="chat-container">
+          <div class="empty-state">
+            <h3>Welcome to Omotenashi!</h3>
+            <p>
+              Select a guest above and start chatting with your personal
+              concierge.
+            </p>
+          </div>
+        </div>
 
-      <button id="generate" onclick="generateText()">Generate Response</button>
+        <!-- Loading -->
+        <div id="loading" class="loading">Assistant is thinking...</div>
 
-      <div class="loading" id="loading">Generating response...</div>
+        <!-- Error -->
+        <div id="error" class="error"></div>
 
-      <div class="error" id="error"></div>
-
-      <div class="response">
-        <label for="response">Response:</label>
-        <textarea id="response" readonly></textarea>
+        <!-- Input Section -->
+        <div class="input-section">
+          <textarea
+            id="messageInput"
+            class="message-input"
+            placeholder="Type your message here..."
+            rows="2"
+          ></textarea>
+          <button id="sendBtn" class="send-button" disabled>Send</button>
+        </div>
       </div>
     </div>
 
     <script>
-      function toggleSystemPrompt() {
-        const container = document.getElementById("systemPromptContainer");
-        container.classList.toggle("visible");
-      }
-
-      async function generateText() {
-        const prompt = document.getElementById("prompt").value;
-        const systemPrompt = document.getElementById("systemPrompt").value;
-        const generateButton = document.getElementById("generate");
-        const loading = document.getElementById("loading");
-        const error = document.getElementById("error");
-        const response = document.getElementById("response");
-
-        if (!prompt.trim()) {
-          error.textContent = "Please enter a prompt";
-          error.style.display = "block";
-          return;
+      class HotelConcierge {
+        constructor() {
+          this.selectedGuest = null;
+          this.conversation = [];
+          this.initEventListeners();
+          this.loadGuests();
         }
 
-        // Reset UI
-        error.style.display = "none";
-        generateButton.disabled = true;
-        loading.style.display = "block";
-        response.value = "";
+        initEventListeners() {
+          document
+            .getElementById("guestSelect")
+            .addEventListener("change", (e) => {
+              this.selectGuest(e.target.value);
+            });
 
-        try {
-          const result = await fetch("/generate", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              prompt,
-              system_prompt: systemPrompt.trim() || null,
-            }),
+          document.getElementById("sendBtn").addEventListener("click", () => {
+            this.sendMessage();
           });
 
-          const data = await result.json();
+          document
+            .getElementById("messageInput")
+            .addEventListener("keypress", (e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                this.sendMessage();
+              }
+            });
 
-          if (!result.ok) {
-            throw new Error(data.detail || "Failed to generate response");
+          document
+            .getElementById("messageInput")
+            .addEventListener("input", (e) => {
+              const sendBtn = document.getElementById("sendBtn");
+              sendBtn.disabled = !e.target.value.trim() || !this.selectedGuest;
+            });
+
+          document
+            .getElementById("newChatBtn")
+            .addEventListener("click", () => {
+              this.startNewChat();
+            });
+
+          document
+            .getElementById("toggleSystemPrompt")
+            .addEventListener("click", () => {
+              this.toggleSystemPrompt();
+            });
+        }
+
+        async loadGuests() {
+          try {
+            const response = await fetch("/guest_profile/all");
+            const guests = await response.json();
+
+            const select = document.getElementById("guestSelect");
+            select.innerHTML = '<option value="">Choose a guest...</option>';
+
+            guests.forEach((guest) => {
+              const option = document.createElement("option");
+              option.value = guest.phone_number;
+              option.textContent = `${guest.name} (${guest.phone_number})`;
+              select.appendChild(option);
+            });
+          } catch (error) {
+            this.showError("Failed to load guests");
+          }
+        }
+
+        selectGuest(phoneNumber) {
+          if (!phoneNumber) {
+            this.selectedGuest = null;
+            document.getElementById("guestInfo").style.display = "none";
+            document.getElementById("sendBtn").disabled = true;
+            return;
           }
 
-          response.value = data.response;
-        } catch (err) {
-          error.textContent = err.message;
-          error.style.display = "block";
-        } finally {
-          generateButton.disabled = false;
-          loading.style.display = "none";
+          this.selectedGuest = phoneNumber;
+          this.showGuestInfo(phoneNumber);
+          this.loadConversation();
+
+          const messageInput = document.getElementById("messageInput");
+          document.getElementById("sendBtn").disabled =
+            !messageInput.value.trim();
+        }
+
+        async showGuestInfo(phoneNumber) {
+          try {
+            const response = await fetch("/guest_profile/all");
+            const guests = await response.json();
+            const guest = guests.find((g) => g.phone_number === phoneNumber);
+
+            if (guest) {
+              const guestInfo = document.getElementById("guestInfo");
+              const guestDetails = document.getElementById("guestDetails");
+
+              guestDetails.innerHTML = `
+                <p><strong>Name:</strong> ${guest.name}</p>
+                <p><strong>Phone:</strong> ${guest.phone_number}</p>
+                <p><strong>Language:</strong> ${guest.preferred_language}</p>
+                <p><strong>VIP Status:</strong> ${
+                  guest.vip_status ? "Yes" : "No"
+                }</p>
+              `;
+
+              guestInfo.style.display = "block";
+            }
+          } catch (error) {
+            this.showError("Failed to load guest information");
+          }
+        }
+
+        async loadConversation() {
+          if (!this.selectedGuest) return;
+
+          try {
+            const response = await fetch(`/session/${this.selectedGuest}`);
+            if (response.ok) {
+              const session = await response.json();
+              this.conversation = session.messages || [];
+              this.renderConversation();
+            } else {
+              this.conversation = [];
+              this.renderConversation();
+            }
+          } catch (error) {
+            this.conversation = [];
+            this.renderConversation();
+          }
+        }
+
+        renderConversation() {
+          const chatContainer = document.getElementById("chatContainer");
+
+          if (this.conversation.length === 0) {
+            chatContainer.innerHTML = `
+              <div class="empty-state">
+                <h3>Start a conversation</h3>
+                <p>Ask me anything about your stay, services, or the property!</p>
+              </div>
+            `;
+            return;
+          }
+
+          chatContainer.innerHTML = this.conversation
+            .map(
+              (msg) => `
+            <div class="message ${msg.type}">
+              <div class="message-content">
+                <div class="message-role">${
+                  msg.type === "user" ? "You" : "Concierge"
+                }</div>
+                <div>${this.formatMessage(msg.content)}</div>
+              </div>
+            </div>
+          `
+            )
+            .join("");
+
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        formatMessage(content) {
+          return content.replace(/\n/g, "<br>");
+        }
+
+        async sendMessage() {
+          const messageInput = document.getElementById("messageInput");
+          const message = messageInput.value.trim();
+
+          if (!message || !this.selectedGuest) return;
+
+          const systemPrompt = document
+            .getElementById("systemPrompt")
+            .value.trim();
+
+          // Add user message to conversation
+          this.conversation.push({ type: "user", content: message });
+          this.renderConversation();
+
+          messageInput.value = "";
+          document.getElementById("sendBtn").disabled = true;
+          this.showLoading(true);
+
+          try {
+            const response = await fetch("/message", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                message: message,
+                phone_number: this.selectedGuest,
+                system_prompt: systemPrompt || null,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // Add assistant response to conversation
+            this.conversation.push({
+              type: "assistant",
+              content: data.response,
+            });
+            this.renderConversation();
+          } catch (error) {
+            this.showError(`Failed to send message: ${error.message}`);
+          } finally {
+            this.showLoading(false);
+          }
+        }
+
+        startNewChat() {
+          if (!this.selectedGuest) return;
+
+          fetch(`/session/${this.selectedGuest}`, { method: "DELETE" })
+            .then(() => {
+              this.conversation = [];
+              this.renderConversation();
+            })
+            .catch((error) => {
+              this.showError("Failed to start new chat");
+            });
+        }
+
+        toggleSystemPrompt() {
+          const section = document.getElementById("systemPromptSection");
+          section.classList.toggle("visible");
+        }
+
+        showLoading(show) {
+          document.getElementById("loading").style.display = show
+            ? "block"
+            : "none";
+        }
+
+        showError(message) {
+          const errorDiv = document.getElementById("error");
+          errorDiv.textContent = message;
+          errorDiv.style.display = "block";
+          setTimeout(() => {
+            errorDiv.style.display = "none";
+          }, 5000);
         }
       }
+
+      // Initialize the application
+      document.addEventListener("DOMContentLoaded", () => {
+        new HotelConcierge();
+      });
     </script>
   </body>
 </html>
