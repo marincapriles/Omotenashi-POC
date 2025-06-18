@@ -13,7 +13,7 @@ load_dotenv()
 
 # OpenAI Configuration
 OPENAI_API_KEY: Optional[str] = os.getenv('OPENAI_API_KEY')
-OPENAI_MODEL: str = os.getenv('OPENAI_MODEL', 'gpt-3.5-turbo')
+OPENAI_MODEL: str = os.getenv('OPENAI_MODEL', 'gpt-4o')
 
 # Application Configuration
 MEMORY_EXPIRY_HOURS: int = int(os.getenv('MEMORY_EXPIRY_HOURS', '1'))

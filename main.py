@@ -19,14 +19,14 @@ from pydantic import BaseModel
 from langchain.agents import AgentType, initialize_agent
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import BaseMessage, SystemMessage
-from langchain.tools import Tool, StructuredTool
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from langchain_chroma import Chroma
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # Local imports
 from config import MEMORY_EXPIRY_HOURS, OPENAI_API_KEY, OPENAI_MODEL, PORT
-from prompts import TOOL_DESCRIPTIONS, combine_prompts, format_guest_context, get_base_system_prompt
+from prompts import combine_prompts, format_guest_context, get_base_system_prompt, get_property_name_from_booking
+from tools import create_guest_tools
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -208,124 +208,8 @@ guest_service = GuestService()
 memory_service = MemoryService()
 
 # ----------------------------------------------------------------------------
-# Tool Creation
+# Tool Creation (moved to tools.py)
 # ----------------------------------------------------------------------------
-
-def create_guest_tools(phone_number: str) -> List[Tool]:
-    """Create tools pre-configured for a specific guest."""
-    
-    def schedule_cleaning(cleaning_time: str) -> str:
-        """Schedule room cleaning."""
-        guest = guest_service.get_guest(phone_number)
-        if not guest:
-            return "Guest not found."
-        
-        booking = guest_service.get_booking(guest["guest_id"])
-        if not booking:
-            return "Booking not found."
-        
-        return (f"Cleaning scheduled for room {booking['property_id']} "
-                f"at {cleaning_time} for {guest['name']} (ID: {guest['guest_id']}).")
-    
-    def modify_checkout_time(new_checkout_time: str) -> str:
-        """Modify guest's checkout time."""
-        guest = guest_service.get_guest(phone_number)
-        if not guest:
-            return "Guest not found."
-        
-        return (f"Checkout time for {guest['name']} (ID: {guest['guest_id']}) "
-                f"updated to {new_checkout_time}.")
-    
-    def request_transport(pickup_time: str, airport_code: str) -> str:
-        """Request airport transport."""
-        guest = guest_service.get_guest(phone_number)
-        if not guest:
-            return "Guest not found."
-        
-        return (f"Transport requested for {guest['name']} (ID: {guest['guest_id']}) "
-                f"to {airport_code} at {pickup_time}.")
-    
-    def get_guest_profile() -> str:
-        """Get guest profile information."""
-        guest = guest_service.get_guest(phone_number)
-        return json.dumps(guest, indent=2) if guest else "Guest not found."
-    
-    def get_booking_details() -> str:
-        """Get guest booking details."""
-        guest = guest_service.get_guest(phone_number)
-        if not guest:
-            return "Guest not found."
-        
-        booking = guest_service.get_booking(guest["guest_id"])
-        return json.dumps(booking, indent=2) if booking else "Booking not found."
-    
-    def get_property_info(query: str = "general information") -> str:
-        """Get property information."""
-        try:
-            guest = guest_service.get_guest(phone_number)
-            if not guest:
-                return "Guest not found."
-            
-            booking = guest_service.get_booking(guest["guest_id"])
-            if not booking:
-                return "Booking not found."
-            
-            logger.info(f"Getting property info for guest {guest.get('name', 'Unknown')} - property: {booking.get('property_id', 'Unknown')}")
-            return vector_store.get_property_info(booking["property_id"], query)
-        except Exception as e:
-            logger.error(f"Error in get_property_info tool: {e}", exc_info=True)
-            return "Sorry, I'm having trouble accessing property information right now."
-    
-    # Input schemas for structured tools
-    class CleaningInput(BaseModel):
-        cleaning_time: str = Field(description="When to schedule the cleaning")
-    
-    class CheckoutInput(BaseModel):
-        new_checkout_time: str = Field(description="New checkout time")
-    
-    class TransportInput(BaseModel):
-        pickup_time: str = Field(description="Pickup time")
-        airport_code: str = Field(description="Airport code")
-    
-    class PropertyInfoInput(BaseModel):
-        query: str = Field(default="general information", description="What to search for")
-    
-    return [
-        StructuredTool.from_function(
-            func=schedule_cleaning,
-            args_schema=CleaningInput,
-            name="schedule_cleaning",
-            description=TOOL_DESCRIPTIONS["schedule_cleaning"]
-        ),
-        StructuredTool.from_function(
-            func=modify_checkout_time,
-            args_schema=CheckoutInput,
-            name="modify_checkout_time",
-            description=TOOL_DESCRIPTIONS["modify_checkout_time"]
-        ),
-        StructuredTool.from_function(
-            func=request_transport,
-            args_schema=TransportInput,
-            name="request_transport",
-            description=TOOL_DESCRIPTIONS["request_transport"]
-        ),
-        StructuredTool.from_function(
-            func=get_guest_profile,
-            name="guest_profile",
-            description=TOOL_DESCRIPTIONS["guest_profile"]
-        ),
-        StructuredTool.from_function(
-            func=get_booking_details,
-            name="booking_details",
-            description=TOOL_DESCRIPTIONS["booking_details"]
-        ),
-        StructuredTool.from_function(
-            func=get_property_info,
-            args_schema=PropertyInfoInput,
-            name="property_info",
-            description=TOOL_DESCRIPTIONS["property_info"]
-        ),
-    ]
 
 # ----------------------------------------------------------------------------
 # Agent Creation
@@ -342,11 +226,12 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
         
         # Create personalized system prompt
         guest_context = format_guest_context(guest, booking)
-        base_prompt = get_base_system_prompt(guest_context)
+        property_name = get_property_name_from_booking(booking)
+        base_prompt = get_base_system_prompt(guest_context, property_name)
         final_prompt = combine_prompts(base_prompt, custom_prompt)
         
         # Create guest-specific tools and agent
-        tools = create_guest_tools(phone)
+        tools = create_guest_tools(phone, guest_service, vector_store)
         llm = ChatOpenAI(model_name=OPENAI_MODEL, temperature=0, openai_api_key=OPENAI_API_KEY)
         
         logger.info(f"Creating agent for phone: {phone}, guest found: {guest is not None}")

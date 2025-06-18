@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_MODEL=gpt-3.5-turbo
+OPENAI_MODEL=gpt-4o
 MEMORY_EXPIRY_HOURS=1
 PORT=8000
 ```
@@ -156,7 +156,7 @@ omotenashi-poc/
 Environment variables:
 
 - `OPENAI_API_KEY`: Required OpenAI API key
-- `OPENAI_MODEL`: GPT model to use (default: gpt-3.5-turbo)
+- `OPENAI_MODEL`: GPT model to use (default: gpt-4o - upgraded for better function calling)
 - `MEMORY_EXPIRY_HOURS`: Session timeout (default: 1 hour)
 - `PORT`: Server port (default: 8000)
 

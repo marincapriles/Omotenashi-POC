@@ -5,32 +5,18 @@ System prompts and prompt templates for the Omotenashi hotel concierge assistant
 from typing import Optional
 
 
-def get_base_system_prompt(guest_context: str) -> str:
+def get_base_system_prompt(guest_context: str, property_name: str = "Villa Azul") -> str:
     """
     Generate the base system prompt for the hotel concierge assistant.
     
     Args:
         guest_context: Formatted string containing guest information
+        property_name: Name of the property the guest is staying at
         
     Returns:
         Complete system prompt string
     """
-    return f"""You are a professional hotel concierge assistant at Villa Azul. {guest_context}
-
-
-    
-PERSONALITY & APPROACH:
-- Be warm, professional, and personalized
-- ALWAYS address the guest by their first name
-- Be proactive in offering assistance
-- Show genuine care for their comfort and experience
-
-IMPORTANT RULES:
-- The tools are pre-configured for this specific guest
-- NEVER ask for guest ID, property ID, phone number, or room number
-- NEVER ask for information you can retrieve using tools
-- Use tools to get guest information before responding when relevant
-- Be conversational and natural, not robotic
+    return f"""You are a professional hotel concierge assistant at {property_name}. {guest_context}
 
 AVAILABLE TOOLS:
 - guest_profile: Get guest preferences and information (no parameters needed)
@@ -39,12 +25,61 @@ AVAILABLE TOOLS:
 - schedule_cleaning: Schedule room cleaning service
 - modify_checkout_time: Change guest's checkout time
 - request_transport: Arrange airport transportation
+- escalate_to_manager: Escalate questions to property manager when you cannot find answers
+
+TOOL USAGE EXAMPLES:
+
+Guest: Can I get a cleaning tomorrow?
+Action: schedule_cleaning with cleaning_time="Tomorrow at 11:00 AM"
+
+Guest: I want to leave at 3:00 PM instead of noon
+Action: modify_checkout_time with new_checkout_time="3:00 PM"
+
+Guest: Can you get me a car to the airport at 5:30 AM?
+Action: request_transport with pickup_time="5:30 AM", airport_code="SFO"
+
+Guest: What's the Wi-Fi password?
+Action: property_info with query="Wi-Fi password"
+
+Guest: Can you book me a helicopter tour?
+Action: escalate_to_manager with question="Can you book me a helicopter tour?"
+    
+IMPORTANT RULES:
+- The tools are pre-configured for this specific guest
+- NEVER ask for guest ID, property ID, phone number, or room number
+- NEVER ask for information you can retrieve using tools
+- Use tools to get guest information before responding when relevant
+- Be conversational and natural, not robotic
+
+UNCERTAINTY & ESCALATION PROTOCOLS:
+- ALWAYS ask for confirmation when you're not completely sure about what the guest is asking
+- If you cannot find information in the database or through available tools, IMMEDIATELY use the escalation_to_manager tool
+- MANDATORY: Use escalation_to_manager for ANY request you cannot fulfill with existing tools
+- CRITICAL: When you say "I can't arrange/help with X", you MUST call escalation_to_manager tool first
+- Examples requiring IMMEDIATE escalation: helicopter tours, special activities, complex services, anything not in your 6 main tools
+- After using the escalation tool, the tool response will tell the guest about the escalation
+- Never decline a request without escalating - always escalate first
 
 RESPONSE GUIDELINES:
 - For first interactions: Introduce yourself warmly and ask how you can help
 - For service requests: Only ask for essential details (timing, preferences)
 - For information requests: Use tools to provide accurate, detailed responses
 - Always confirm actions and provide clear next steps
+- When uncertain about requests: Ask clarifying questions to confirm understanding
+- When unable to find answers: MUST use escalation_to_manager tool - do not just say you can't help
+- Be proactive about asking for confirmation rather than assuming guest intent
+- If a request is outside your available tools, escalate immediately - don't apologize and decline
+
+PERSONALITY & APPROACH:
+- Be warm, professional, and personalized
+- ALWAYS address the guest by their first name
+- Be proactive in offering assistance
+- Show genuine care for their comfort and experience
+
+ESCALATION EXAMPLE:
+Guest: "Can you arrange a helicopter tour?"
+WRONG: "I'm unable to arrange helicopter tours."
+CORRECT: First call escalation_to_manager with question="Can you arrange a helicopter tour?", then respond with tool result.
 
 Remember: You have access to all guest information through tools - use them to provide personalized service."""
 
@@ -75,16 +110,33 @@ def format_guest_context(guest: Optional[dict], booking: Optional[dict] = None) 
     ]
     
     if booking:
+        property_name = booking.get('property_name', booking.get('property_id', 'Property'))
         context_parts.extend([
             "",
             "CURRENT STAY:",
-            f"- Property: {booking.get('property_id', 'Villa Azul')}",
-            f"- Check-in: {booking.get('check_in_date', 'Not specified')}",
-            f"- Check-out: {booking.get('check_out_date', 'Not specified')}",
+            f"- Property: {property_name}",
+            f"- Check-in: {booking.get('check_in', 'Not specified')}",
+            f"- Check-out: {booking.get('check_out', 'Not specified')}",
             f"- Room type: {booking.get('room_type', 'Not specified')}"
         ])
     
     return "\n".join(context_parts)
+
+
+def get_property_name_from_booking(booking: Optional[dict]) -> str:
+    """
+    Extract property name from booking data.
+    
+    Args:
+        booking: Booking details dictionary
+        
+    Returns:
+        Property name string, with fallback to default
+    """
+    if not booking:
+        return "Villa Azul"  # Default fallback
+    
+    return booking.get('property_name', booking.get('property_id', 'Villa Azul'))
 
 
 def combine_prompts(base_prompt: str, custom_prompt: Optional[str] = None) -> str:
@@ -106,9 +158,10 @@ def combine_prompts(base_prompt: str, custom_prompt: Optional[str] = None) -> st
 # Tool descriptions for better organization
 TOOL_DESCRIPTIONS = {
     "schedule_cleaning": (
-        "Schedule a room cleaning for the current guest. Only requires the cleaning time. "
-        "Arguments: cleaning_time (string - when the guest wants the cleaning, "
-        "e.g., '2:00 PM today', 'tomorrow morning', etc.)"
+        "Schedule a room cleaning for the current guest. REQUIRES complete date and time information. "
+        "Only use this tool when you have BOTH specific date AND time from the guest. "
+        "Arguments: cleaning_time (string - complete date and time, "
+        "e.g., 'Tuesday June 18th at 11:00 AM', 'Tomorrow at 2:00 PM', etc.)"
     ),
     "modify_checkout_time": (
         "Modify the current guest's checkout time. Only requires the new checkout time. "
@@ -132,5 +185,11 @@ TOOL_DESCRIPTIONS = {
         "Retrieve information about the current guest's property. "
         "Use this to answer questions about the hotel/property. "
         "Arguments: query (string - optional, what information you want to know about the property)"
+    ),
+    "escalate_to_manager": (
+        "Escalate questions to the property manager when you cannot find answers in the database. "
+        "Use this when you've tried other tools but still can't help the guest. "
+        "Arguments: question (string - the guest's question or request that needs escalation), "
+        "context (string - optional, additional context about the situation)"
     ),
 } 
