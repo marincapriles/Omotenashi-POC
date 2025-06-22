@@ -21,10 +21,10 @@ from langchain.memory import ConversationBufferMemory
 from langchain.schema import BaseMessage, SystemMessage
 from pydantic import BaseModel
 from langchain_chroma import Chroma
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_anthropic import ChatAnthropic
 
 # Local imports
-from config import MEMORY_EXPIRY_HOURS, OPENAI_API_KEY, OPENAI_MODEL, PORT
+from config import MEMORY_EXPIRY_HOURS, ANTHROPIC_API_KEY, CLAUDE_MODEL, PORT
 from prompts import combine_prompts, format_guest_context, get_base_system_prompt, get_property_name_from_booking
 from tools import create_guest_tools
 
@@ -87,7 +87,11 @@ class VectorStoreService:
         """Lazy-load the vector store retriever."""
         if self._retriever is None:
             try:
-                embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+                # Note: Claude doesn't provide embeddings, so we'll use a different approach
+                # For now, we'll use a local embedding model or keep OpenAI embeddings
+                # This is a common pattern when using Claude for LLM but needing embeddings elsewhere
+                from langchain_community.embeddings import HuggingFaceEmbeddings
+                embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
                 self._vectorstore = Chroma(
                     persist_directory="chroma_db", 
                     embedding_function=embeddings
@@ -232,14 +236,20 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
         
         # Create guest-specific tools and agent
         tools = create_guest_tools(phone, guest_service, vector_store)
-        llm = ChatOpenAI(model_name=OPENAI_MODEL, temperature=0, openai_api_key=OPENAI_API_KEY)
+        llm = ChatAnthropic(
+            model=CLAUDE_MODEL,
+            anthropic_api_key=ANTHROPIC_API_KEY,
+            temperature=0
+        )
         
         logger.info(f"Creating agent for phone: {phone}, guest found: {guest is not None}")
         
+        # Note: Using STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION instead of OPENAI_FUNCTIONS
+        # since Claude doesn't support OpenAI function calling format
         return initialize_agent(
             tools=tools,
             llm=llm,
-            agent=AgentType.OPENAI_FUNCTIONS,
+            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             memory=memory_service.get_memory(phone),
             system_message=SystemMessage(content=final_prompt),
             verbose=False,

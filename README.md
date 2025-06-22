@@ -4,7 +4,7 @@ A sophisticated AI-powered hotel concierge system built with FastAPI and LangCha
 
 ## Features
 
-- 🤖 **AI-Powered Concierge**: Intelligent assistant using OpenAI's GPT models
+- 🤖 **AI-Powered Concierge**: Intelligent assistant using Anthropic's Claude models
 - 👤 **Guest-Specific Context**: Personalized responses based on guest profiles and bookings
 - 🛠️ **Service Tools**: Room cleaning, checkout modifications, transport requests
 - 💬 **Conversation Memory**: Maintains chat history per guest session
@@ -33,7 +33,7 @@ A sophisticated AI-powered hotel concierge system built with FastAPI and LangCha
 ### Prerequisites
 
 - Python 3.8+
-- OpenAI API key
+- Anthropic API key
 
 ### Installation
 
@@ -56,8 +56,8 @@ pip install -r requirements.txt
    Create a `.env` file:
 
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_MODEL=gpt-4o
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+CLAUDE_MODEL=claude-3-opus-20240229
 MEMORY_EXPIRY_HOURS=1
 PORT=8000
 ```
@@ -155,8 +155,8 @@ omotenashi-poc/
 
 Environment variables:
 
-- `OPENAI_API_KEY`: Required OpenAI API key
-- `OPENAI_MODEL`: GPT model to use (default: gpt-4o - upgraded for better function calling)
+- `ANTHROPIC_API_KEY`: Required Anthropic API key
+- `CLAUDE_MODEL`: Claude model to use (default: claude-3-opus-20240229)
 - `MEMORY_EXPIRY_HOURS`: Session timeout (default: 1 hour)
 - `PORT`: Server port (default: 8000)
 
