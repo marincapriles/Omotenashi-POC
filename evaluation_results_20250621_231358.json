@@ -1,0 +1,2233 @@
+{
+  "metrics": {
+    "overall": {
+      "precision": 0.403,
+      "recall": 0.589,
+      "f1": 0.479,
+      "total_tests": 100,
+      "total_tp": 56,
+      "total_fp": 83,
+      "total_fn": 39
+    },
+    "per_tool": {
+      "guest_profile": {
+        "precision": 0.286,
+        "recall": 0.75,
+        "f1": 0.414,
+        "tp": 12,
+        "fp": 30,
+        "fn": 4
+      },
+      "booking_details": {
+        "precision": 0.352,
+        "recall": 1.0,
+        "f1": 0.521,
+        "tp": 19,
+        "fp": 35,
+        "fn": 0
+      },
+      "property_info": {
+        "precision": 0.762,
+        "recall": 1.0,
+        "f1": 0.865,
+        "tp": 16,
+        "fp": 5,
+        "fn": 0
+      },
+      "escalate_to_manager": {
+        "precision": 0.222,
+        "recall": 0.2,
+        "f1": 0.211,
+        "tp": 2,
+        "fp": 7,
+        "fn": 8
+      },
+      "schedule_cleaning": {
+        "precision": 0.2,
+        "recall": 0.091,
+        "f1": 0.125,
+        "tp": 1,
+        "fp": 4,
+        "fn": 10
+      },
+      "modify_checkout_time": {
+        "precision": 0.75,
+        "recall": 0.545,
+        "f1": 0.632,
+        "tp": 6,
+        "fp": 2,
+        "fn": 5
+      },
+      "request_transport": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12
+      }
+    },
+    "per_category": {
+      "transport": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 10
+      },
+      "guest_info": {
+        "precision": 0.75,
+        "recall": 0.8,
+        "f1": 0.774,
+        "test_count": 15
+      },
+      "multi_tool": {
+        "precision": 0.455,
+        "recall": 0.5,
+        "f1": 0.476,
+        "test_count": 5
+      },
+      "cleaning": {
+        "precision": 0.056,
+        "recall": 0.1,
+        "f1": 0.071,
+        "test_count": 10
+      },
+      "booking_info": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "test_count": 15
+      },
+      "checkout": {
+        "precision": 0.24,
+        "recall": 0.6,
+        "f1": 0.343,
+        "test_count": 10
+      },
+      "escalation": {
+        "precision": 0.222,
+        "recall": 0.2,
+        "f1": 0.211,
+        "test_count": 10
+      },
+      "cleaning_vague": {
+        "precision": 0.0,
+        "recall": 0,
+        "f1": 0,
+        "test_count": 5
+      },
+      "no_tool": {
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "test_count": 5
+      },
+      "property_info": {
+        "precision": 0.652,
+        "recall": 1.0,
+        "f1": 0.789,
+        "test_count": 15
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "test_id": 1,
+      "prompt": "Hi, what's my name?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your profile at the moment, so I don't have your name. If you have any other questions or need assistance, feel free to let me know!",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 2,
+      "prompt": "Can you tell me about my preferences?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to retrieve your preferences at the moment. Could you please provide more details or let me know if there's anything specific you would like to know or update?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 3,
+      "prompt": "Am I a VIP guest?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "I couldn't find your guest profile, so I'm unable to determine if you are a VIP guest. Could you please provide your name or reservation details?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 4,
+      "prompt": "What language do I prefer?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your profile at the moment, so I can't determine your language preference. If you have any specific requests or need assistance, please let me know!",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 5,
+      "prompt": "Hello, I'm new here. Can you help me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "Of course! Welcome! How can I assist you today?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 6,
+      "prompt": "What are my dietary restrictions?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your dietary restrictions at the moment. Could you please provide more details or let me know if there's anything else I can assist you with?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 7,
+      "prompt": "Do you have my contact information?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your contact information at the moment. If you have any specific requests or need assistance, please let me know, and I'll do my best to help you!",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 8,
+      "prompt": "Can you show me my profile?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your profile at the moment. Could you please provide your name or any other details related to your booking so I can assist you better?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 9,
+      "prompt": "What's my guest ID?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your guest ID at the moment. Please check with the front desk or your booking confirmation for this information. If you have any other questions or need assistance, feel free to...",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 10,
+      "prompt": "Tell me about myself",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your profile or preferences at the moment. If you have any specific questions or requests, feel free to let me know, and I'll do my best to assist you!",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 11,
+      "prompt": "What do you know about me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I don't have any specific information about you at the moment. If you have any questions or need assistance, feel free to let me know!",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 12,
+      "prompt": "Am I registered as a guest here?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "It seems that I couldn't find any information about your registration as a guest here. If you believe this is an error, please check with the front desk or provide more details, and I'll do my best to...",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 13,
+      "prompt": "What's my preferred room temperature?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to access your guest profile at the moment, so I can't determine your preferred room temperature. You might want to check with the front desk or provide your preference directly. If there's...",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 14,
+      "prompt": "Do I have any special requests on file?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "I couldn't find your guest profile. Could you please provide your name or reservation details so I can assist you further?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 15,
+      "prompt": "What's my guest status?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I'm unable to find your guest profile at the moment. Could you please provide more details or check with the front desk for assistance?",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 16,
+      "prompt": "When do I check out?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your booking details at the moment. Could you please provide your name or reservation number so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 17,
+      "prompt": "What room am I staying in?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details at the moment. Could you please provide your name or reservation number so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 18,
+      "prompt": "Can you show me my reservation details?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your reservation details at the moment. Could you please provide your reservation number or any other identifying information so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 19,
+      "prompt": "When is my check-in date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your booking details at the moment. Could you please provide your reservation number or any other details related to your booking? This will help me assist you better.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 20,
+      "prompt": "What type of room did I book?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details at the moment. Could you please provide your reservation number or any other identifying information so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 21,
+      "prompt": "How many nights am I staying?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details at the moment. Could you please provide your check-in and check-out dates, or any other information related to your reservation?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 22,
+      "prompt": "What's my confirmation number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your booking details at the moment. Could you please provide your name or any other information related to your reservation? This will help me assist you better.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 23,
+      "prompt": "Show me my booking information",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "It seems that I couldn't retrieve your booking information. Could you please confirm your reservation details or let me know if there's anything specific you need help with?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 24,
+      "prompt": "What's included in my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details at the moment. Could you please provide more information or check with the front desk for assistance?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 25,
+      "prompt": "When did I make this reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your reservation details at the moment. Could you please provide more information or check with the front desk for assistance?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 26,
+      "prompt": "What's my room number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your room number at the moment. Could you please provide your name or reservation details so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 27,
+      "prompt": "How much did I pay for this room?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details at the moment. Could you please provide your reservation number or any other identifying information so I can assist you further?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 28,
+      "prompt": "What's my arrival time?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your booking details at the moment. Could you please provide your reservation number or any other details related to your booking? This will help me assist you better.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 29,
+      "prompt": "What's my departure date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "I'm unable to find your booking details at the moment. Could you please provide your reservation number or any other details that might help me locate your booking?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 30,
+      "prompt": "Can you pull up my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "It seems I couldn't find your reservation details. Could you please provide your reservation number or any other details that might help me locate your booking?",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 31,
+      "prompt": "What's the WiFi password?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the WiFi password at the moment. Please check with the front desk or your room information booklet for the WiFi details. If you need further assistance, feel free to ask!",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 32,
+      "prompt": "What time does the pool open?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the pool opening hours or escalate the request. I recommend checking directly with the hotel reception or concierge for the most accurate information. If there's anythin...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 33,
+      "prompt": "Do you have a gym?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I apologize for the inconvenience. I'm unable to access the information about the gym facilities at the moment. Would you like me to escalate this question to the property manager for further assistan...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 34,
+      "prompt": "What restaurants are nearby?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the information about nearby restaurants or escalate the request. I recommend checking with the hotel reception or concierge for the best dining options in the area. The...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 35,
+      "prompt": "Tell me about the hotel amenities",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the specific amenities for your hotel at the moment. Could you please provide more details or let me know if there's anything specific you're interested in? Alternatively, I can...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 36,
+      "prompt": "What services do you offer?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info",
+        "schedule_cleaning"
+      ],
+      "response": "I couldn't retrieve specific information about the services offered at this property. However, most hotels typically offer services such as room service, housekeeping, laundry, concierge, fitness cent...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 37,
+      "prompt": "Where is the spa located?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the information about the spa location at the moment. Could you please provide more details or try again later?",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 38,
+      "prompt": "Can you tell me about the hotel facilities?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the information about the hotel facilities at the moment. Could you please provide more details or specify the hotel name? Alternatively, I can escalate this request to the prop...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 39,
+      "prompt": "What's the breakfast schedule?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the breakfast schedule information. I recommend checking with the front desk or the hotel's information booklet in your room for the most accurate details. If you have a...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 40,
+      "prompt": "Do you have room service?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the information about room service availability. Would you like me to escalate this question to the property manager for further assistance?",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 41,
+      "prompt": "Where's the business center?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the information about the business center's location at the moment. You might want to check with the front desk or hotel staff for directions. If you have any other questions or...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 42,
+      "prompt": "What are your pool hours?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I'm unable to retrieve the pool hours at the moment. Would you like me to escalate this question to the property manager for more information?",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 43,
+      "prompt": "Do you have a concierge desk?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the specific information about whether there is a concierge desk at the property. I recommend checking directly with the hotel staff at the front desk for the most accur...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 44,
+      "prompt": "What's the parking situation?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I'm currently unable to access the parking information or escalate the request to the property manager. I recommend contacting the front desk or the hotel's main contact number for immediate assistanc...",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 45,
+      "prompt": "Tell me about your fitness center",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [
+        "escalate_to_manager",
+        "property_info"
+      ],
+      "response": "I apologize for the inconvenience, but I'm currently unable to retrieve the information about the fitness center. Would you like me to escalate this to the property manager for more details?",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 46,
+      "prompt": "Can you clean my room tomorrow at 2 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your room number or any other booking details so I can assist you further?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 47,
+      "prompt": "I need housekeeping service on Friday at 11:00 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your reservation details or any specific information that might help me assist you further?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 48,
+      "prompt": "Please schedule room cleaning for today at 3:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your room number or any other details that might help me assist you better?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 49,
+      "prompt": "Can you arrange cleaning service for Monday morning at 10 AM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your reservation details or let me know if there's anything else I can assist you with?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 50,
+      "prompt": "I'd like room service cleaning tomorrow at 1:00 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue with accessing your guest profile. Could you please confirm your room number or any other booking details? This will help me assist you better.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 51,
+      "prompt": "Schedule housekeeping for Wednesday at 9:30 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access the guest information at the moment. Could you please confirm your booking details or provide any additional information?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 52,
+      "prompt": "Can you clean my room on Thursday at 4:00 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "schedule_cleaning",
+        "booking_details"
+      ],
+      "response": "It seems there was an issue scheduling the room cleaning. Could you please confirm your booking details or let me know if there's anything else I can assist you with?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 53,
+      "prompt": "I need cleaning service tomorrow at 12:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your booking details or any specific information related to your stay? This will help me assist you better...",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 54,
+      "prompt": "Please arrange housekeeping for Sunday at 10:15 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue with retrieving your guest profile. Could you please confirm your booking details or provide any additional information?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 55,
+      "prompt": "Book room cleaning for next Tuesday at 2:45 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "It seems that I am unable to access the guest information at the moment. Could you please confirm your booking details or provide any additional information?",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 56,
+      "prompt": "Can you get someone to clean my room this afternoon?",
+      "expected_tools": [],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "I couldn't retrieve your guest profile, so I don't have access to your specific booking details. Could you please provide the exact time this afternoon when you would like your room to be cleaned?",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 57,
+      "prompt": "I need cleaning tomorrow morning",
+      "expected_tools": [],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "It seems I don't have access to your guest profile at the moment. Could you please provide me with the specific time you would like the cleaning to be scheduled for tomorrow morning?",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 58,
+      "prompt": "Schedule housekeeping for later today",
+      "expected_tools": [],
+      "actual_tools": [
+        "schedule_cleaning"
+      ],
+      "response": "Could you please provide me with a specific time for the housekeeping service later today?",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 59,
+      "prompt": "Can you clean my room sometime tomorrow?",
+      "expected_tools": [],
+      "actual_tools": [
+        "guest_profile",
+        "schedule_cleaning"
+      ],
+      "response": "I couldn't retrieve your profile information. Could you please provide a specific time for the room cleaning tomorrow?",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 60,
+      "prompt": "I need housekeeping in the evening",
+      "expected_tools": [],
+      "actual_tools": [
+        "schedule_cleaning"
+      ],
+      "response": "Could you please provide me with the specific date and time in the evening when you would like the housekeeping service?",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 61,
+      "prompt": "Can I change my checkout to 3 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile or booking details at the moment. Could you please confirm your reservation details or provide any additional information so I can assist you furt...",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 62,
+      "prompt": "I need to extend my checkout until 2:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your reservation details or any specific information that might help me assist you further?",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 63,
+      "prompt": "Can you give me a late checkout at 1 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile or booking details at the moment. Could you please confirm your reservation details or contact the front desk for assistance with your late checko...",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 64,
+      "prompt": "I want to check out at noon instead of 11 AM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "booking_details"
+      ],
+      "response": "It seems I'm unable to access your booking details at the moment. Could you please confirm your reservation details or any specific information that might help me assist you better? Alternatively, you...",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 65,
+      "prompt": "Please change my departure time to 4:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile or modify your checkout time at the moment. Could you please confirm your reservation details or contact the front desk for assistance?",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 66,
+      "prompt": "Can I get a late checkout until 5 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "It seems I'm unable to access your guest profile at the moment. Could you please provide your name or reservation details so I can assist you with the late checkout request?",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 67,
+      "prompt": "I need to modify my checkout time to 1:30 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile or modify your checkout time at the moment. Could you please confirm your reservation details or any specific information that might help me assis...",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 68,
+      "prompt": "Can you extend my stay until 6 PM checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile or modify your checkout time directly. Could you please confirm your reservation details or contact the front desk for assistance with extending y...",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 69,
+      "prompt": "Change my checkout from 11 AM to 2 PM please",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue accessing your guest profile. Could you please confirm your name or reservation details so I can assist you further?",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 70,
+      "prompt": "I want to leave later, can you change my checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details or guest profile at the moment. Could you please provide me with your current checkout time and the new time you'd like to check out?",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 71,
+      "prompt": "Can you get me a ride to SFO airport at 6 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I am unable to access your guest profile at the moment. Could you please confirm your booking details or provide any additional information so I can assist you further?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 72,
+      "prompt": "I need transportation to LAX tomorrow at 3:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your booking details or provide any additional information that might help me assist you further?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 73,
+      "prompt": "Please arrange a car to the airport at 8:00 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile"
+      ],
+      "response": "I couldn't retrieve your guest profile. Could you please provide me with the airport code for your destination?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 74,
+      "prompt": "Can you book airport transport for 5:45 AM to JFK?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue with retrieving your guest profile. Could you please confirm your booking details or provide any additional information?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 75,
+      "prompt": "I need a taxi to Oakland airport at 7 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your booking details or provide any additional information so I can assist you further?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 76,
+      "prompt": "Book me a car to SFO at 9:30 AM tomorrow",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue with retrieving your guest profile, which is necessary to book the transport. Could you please confirm your booking details or provide any additional information?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 77,
+      "prompt": "Can you arrange airport pickup at 4:15 PM to LAX?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I'm unable to access your guest profile at the moment. Could you please confirm your booking details or provide any additional information so I can assist you further?",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 78,
+      "prompt": "I need transport to the airport at 6:45 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "Could you please provide me with the airport code for your destination? This will help me arrange the transport for you.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 79,
+      "prompt": "Please get me a ride to JFK at 2:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems there is an issue with retrieving your guest profile, which is necessary to arrange transportation. Could you please confirm your booking details or provide any additional information? Altern...",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 80,
+      "prompt": "Can you call a taxi for airport transfer at 5 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "Could you please provide the airport code for your destination? This will help me arrange the airport transfer for you.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 81,
+      "prompt": "Can you book me a helicopter tour?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "property_info",
+        "booking_details"
+      ],
+      "response": "I'm unable to book a helicopter tour directly. However, I recommend contacting the concierge or front desk at your hotel, as they might have partnerships with local tour operators and can assist you w...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 82,
+      "prompt": "I want to rent a yacht for tomorrow",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "It seems I'm unable to process this request directly. I recommend contacting the front desk or concierge service at the property for assistance with renting a yacht. They should be able to help you wi...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 83,
+      "prompt": "Can you arrange a private chef for dinner?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "escalate_to_manager"
+      ],
+      "response": "I'm unable to arrange a private chef for dinner directly. I recommend contacting the front desk or the property manager for assistance with this request. They will be able to provide you with more inf...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 84,
+      "prompt": "I need a massage therapist to come to my room",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm currently unable to access the necessary information to arrange a massage therapist for you. I recommend contacting the front desk directly for assistance with this request. They will be able to h...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 85,
+      "prompt": "Can you organize a wine tasting experience?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm unable to directly arrange a wine tasting experience for you, but I recommend checking with the hotel concierge or front desk. They should be able to provide information on local wine tasting tour...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 86,
+      "prompt": "I want to book a limousine for a city tour",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "property_info",
+        "booking_details"
+      ],
+      "response": "It seems I'm unable to directly arrange a limousine for a city tour. I recommend contacting the front desk or concierge at the hotel for assistance with booking a limousine service. They should be abl...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 87,
+      "prompt": "Can you arrange a private jet charter?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "escalate_to_manager"
+      ],
+      "response": "I can't arrange a private jet charter directly, but I can escalate your request to the property manager who may be able to assist you with this. Would you like me to do that?",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 88,
+      "prompt": "I need a personal shopping assistant",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "Could you please provide more details about what you need assistance with? Are you looking for help with shopping for specific items, finding deals, or something else? Let me know how I can assist you...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 89,
+      "prompt": "Can you book tickets to a Broadway show?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [
+        "property_info"
+      ],
+      "response": "I'm unable to book tickets to a Broadway show directly. However, I can guide you on how to do it or assist with any other hotel-related services you might need. Let me know how I can help!",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 90,
+      "prompt": "I want to arrange a private dining experience",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm currently unable to access the necessary information to arrange a private dining experience for you. Could you please provide more details or check with the front desk for immediate assistance? Th...",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 91,
+      "prompt": "What time do I check out and can you get me transport to SFO at 2 PM?",
+      "expected_tools": [
+        "booking_details",
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your booking details or profile at the moment. Could you please provide your checkout time or any other details you might have? Once I have that, I can assist you with schedulin...",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 92,
+      "prompt": "Can you tell me my room details and schedule cleaning for tomorrow at 11 AM?",
+      "expected_tools": [
+        "booking_details",
+        "schedule_cleaning"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems that I am unable to retrieve your booking details or guest profile at the moment. Could you please provide your room number or any other booking information so I can assist you further?",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 93,
+      "prompt": "What's my name and when is my checkout time?",
+      "expected_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "actual_tools": [
+        "modify_checkout_time",
+        "booking_details"
+      ],
+      "response": "I'm unable to retrieve your name and checkout time at the moment. Could you please provide your name or any booking reference so I can assist you further?",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 94,
+      "prompt": "Show me my booking details and what are the hotel amenities?",
+      "expected_tools": [
+        "booking_details",
+        "property_info"
+      ],
+      "actual_tools": [
+        "property_info",
+        "booking_details"
+      ],
+      "response": "It seems I'm having trouble accessing your information. Could you please provide your name or reservation number so I can assist you with your booking details and hotel amenities?",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 95,
+      "prompt": "I need to change checkout to 3 PM and book transport to LAX at 4 PM",
+      "expected_tools": [
+        "modify_checkout_time",
+        "request_transport"
+      ],
+      "actual_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "response": "It seems I'm unable to access your guest profile or booking details at the moment. Could you please confirm your reservation details or provide any additional information that might help me assist you...",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 96,
+      "prompt": "Thank you for your help!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "You're welcome! If you have any questions or need assistance, feel free to ask.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 97,
+      "prompt": "How are you doing today?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm just a computer program, so I don't have feelings, but I'm here and ready to help you! How can I assist you today?",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 98,
+      "prompt": "That sounds great, thanks!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "You're welcome! If there's anything else you need or any questions you have, feel free to ask.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 99,
+      "prompt": "Good morning!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "Good morning! How can I assist you today?",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 100,
+      "prompt": "Have a nice day!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "Thank you! Have a wonderful day as well! If you need any assistance, feel free to ask.",
+      "success": true,
+      "category": "no_tool"
+    }
+  ],
+  "test_cases": [
+    {
+      "id": 1,
+      "prompt": "Hi, what's my name?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 2,
+      "prompt": "Can you tell me about my preferences?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 3,
+      "prompt": "Am I a VIP guest?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 4,
+      "prompt": "What language do I prefer?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 5,
+      "prompt": "Hello, I'm new here. Can you help me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 6,
+      "prompt": "What are my dietary restrictions?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 7,
+      "prompt": "Do you have my contact information?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 8,
+      "prompt": "Can you show me my profile?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 9,
+      "prompt": "What's my guest ID?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 10,
+      "prompt": "Tell me about myself",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 11,
+      "prompt": "What do you know about me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 12,
+      "prompt": "Am I registered as a guest here?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 13,
+      "prompt": "What's my preferred room temperature?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 14,
+      "prompt": "Do I have any special requests on file?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 15,
+      "prompt": "What's my guest status?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 16,
+      "prompt": "When do I check out?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 17,
+      "prompt": "What room am I staying in?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 18,
+      "prompt": "Can you show me my reservation details?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 19,
+      "prompt": "When is my check-in date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 20,
+      "prompt": "What type of room did I book?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 21,
+      "prompt": "How many nights am I staying?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 22,
+      "prompt": "What's my confirmation number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 23,
+      "prompt": "Show me my booking information",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 24,
+      "prompt": "What's included in my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 25,
+      "prompt": "When did I make this reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 26,
+      "prompt": "What's my room number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 27,
+      "prompt": "How much did I pay for this room?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 28,
+      "prompt": "What's my arrival time?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 29,
+      "prompt": "What's my departure date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 30,
+      "prompt": "Can you pull up my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 31,
+      "prompt": "What's the WiFi password?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 32,
+      "prompt": "What time does the pool open?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 33,
+      "prompt": "Do you have a gym?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 34,
+      "prompt": "What restaurants are nearby?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 35,
+      "prompt": "Tell me about the hotel amenities",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 36,
+      "prompt": "What services do you offer?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 37,
+      "prompt": "Where is the spa located?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 38,
+      "prompt": "Can you tell me about the hotel facilities?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 39,
+      "prompt": "What's the breakfast schedule?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 40,
+      "prompt": "Do you have room service?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 41,
+      "prompt": "Where's the business center?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 42,
+      "prompt": "What are your pool hours?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 43,
+      "prompt": "Do you have a concierge desk?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 44,
+      "prompt": "What's the parking situation?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 45,
+      "prompt": "Tell me about your fitness center",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 46,
+      "prompt": "Can you clean my room tomorrow at 2 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 47,
+      "prompt": "I need housekeeping service on Friday at 11:00 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 48,
+      "prompt": "Please schedule room cleaning for today at 3:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 49,
+      "prompt": "Can you arrange cleaning service for Monday morning at 10 AM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 50,
+      "prompt": "I'd like room service cleaning tomorrow at 1:00 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 51,
+      "prompt": "Schedule housekeeping for Wednesday at 9:30 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 52,
+      "prompt": "Can you clean my room on Thursday at 4:00 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 53,
+      "prompt": "I need cleaning service tomorrow at 12:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 54,
+      "prompt": "Please arrange housekeeping for Sunday at 10:15 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 55,
+      "prompt": "Book room cleaning for next Tuesday at 2:45 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 56,
+      "prompt": "Can you get someone to clean my room this afternoon?",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 57,
+      "prompt": "I need cleaning tomorrow morning",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 58,
+      "prompt": "Schedule housekeeping for later today",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 59,
+      "prompt": "Can you clean my room sometime tomorrow?",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 60,
+      "prompt": "I need housekeeping in the evening",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 61,
+      "prompt": "Can I change my checkout to 3 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 62,
+      "prompt": "I need to extend my checkout until 2:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 63,
+      "prompt": "Can you give me a late checkout at 1 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 64,
+      "prompt": "I want to check out at noon instead of 11 AM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 65,
+      "prompt": "Please change my departure time to 4:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 66,
+      "prompt": "Can I get a late checkout until 5 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 67,
+      "prompt": "I need to modify my checkout time to 1:30 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 68,
+      "prompt": "Can you extend my stay until 6 PM checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 69,
+      "prompt": "Change my checkout from 11 AM to 2 PM please",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 70,
+      "prompt": "I want to leave later, can you change my checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 71,
+      "prompt": "Can you get me a ride to SFO airport at 6 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 72,
+      "prompt": "I need transportation to LAX tomorrow at 3:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 73,
+      "prompt": "Please arrange a car to the airport at 8:00 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 74,
+      "prompt": "Can you book airport transport for 5:45 AM to JFK?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 75,
+      "prompt": "I need a taxi to Oakland airport at 7 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 76,
+      "prompt": "Book me a car to SFO at 9:30 AM tomorrow",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 77,
+      "prompt": "Can you arrange airport pickup at 4:15 PM to LAX?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 78,
+      "prompt": "I need transport to the airport at 6:45 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 79,
+      "prompt": "Please get me a ride to JFK at 2:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 80,
+      "prompt": "Can you call a taxi for airport transfer at 5 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 81,
+      "prompt": "Can you book me a helicopter tour?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 82,
+      "prompt": "I want to rent a yacht for tomorrow",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 83,
+      "prompt": "Can you arrange a private chef for dinner?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 84,
+      "prompt": "I need a massage therapist to come to my room",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 85,
+      "prompt": "Can you organize a wine tasting experience?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 86,
+      "prompt": "I want to book a limousine for a city tour",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 87,
+      "prompt": "Can you arrange a private jet charter?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 88,
+      "prompt": "I need a personal shopping assistant",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 89,
+      "prompt": "Can you book tickets to a Broadway show?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 90,
+      "prompt": "I want to arrange a private dining experience",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 91,
+      "prompt": "What time do I check out and can you get me transport to SFO at 2 PM?",
+      "expected_tools": [
+        "booking_details",
+        "request_transport"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 92,
+      "prompt": "Can you tell me my room details and schedule cleaning for tomorrow at 11 AM?",
+      "expected_tools": [
+        "booking_details",
+        "schedule_cleaning"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 93,
+      "prompt": "What's my name and when is my checkout time?",
+      "expected_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 94,
+      "prompt": "Show me my booking details and what are the hotel amenities?",
+      "expected_tools": [
+        "booking_details",
+        "property_info"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 95,
+      "prompt": "I need to change checkout to 3 PM and book transport to LAX at 4 PM",
+      "expected_tools": [
+        "modify_checkout_time",
+        "request_transport"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 96,
+      "prompt": "Thank you for your help!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 97,
+      "prompt": "How are you doing today?",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 98,
+      "prompt": "That sounds great, thanks!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 99,
+      "prompt": "Good morning!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 100,
+      "prompt": "Have a nice day!",
+      "expected_tools": [],
+      "category": "no_tool"
+    }
+  ]
+}
