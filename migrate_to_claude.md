@@ -1,6 +1,6 @@
 # Migration Guide: OpenAI to Claude
 
-This guide helps you migrate from the OpenAI GPT-4o setup to the new Anthropic Claude-3 Opus configuration.
+This guide helps you migrate from the OpenAI GPT-4o setup to the new Anthropic Claude-4 Opus configuration.
 
 ## Required Changes
 
@@ -17,7 +17,7 @@ OPENAI_MODEL=gpt-4o
 
 ```env
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
-CLAUDE_MODEL=claude-3-opus-20240229
+CLAUDE_MODEL=claude-opus-4-20250514
 ```
 
 ### 2. Get Anthropic API Key
@@ -43,14 +43,14 @@ pip install -r requirements.txt
 
 ### 4. Key Changes Made
 
-- **LLM Provider**: Switched from OpenAI GPT-4o to Anthropic Claude-3 Opus
+- **LLM Provider**: Switched from OpenAI GPT-4o to Anthropic Claude-4 Opus
 - **Agent Type**: Changed from `OPENAI_FUNCTIONS` to `STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION`
 - **Embeddings**: Now using local HuggingFace `sentence-transformers/all-MiniLM-L6-v2` model
 - **No Vendor Lock-in**: Embeddings run locally, no external API calls needed
 
 ### 5. Performance Considerations
 
-- **Claude-3 Opus**: Enhanced reasoning capabilities, better at complex tasks
+- **Claude-4 Opus**: Enhanced reasoning capabilities, better at complex tasks, frontier intelligence
 - **Local Embeddings**: No API calls for embeddings = faster response times + cost savings
 - **Agent Architecture**: Structured chat format works well with Claude's capabilities
 
