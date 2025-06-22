@@ -179,7 +179,7 @@ TEST_CASES = [
 class ToolEvaluator:
     """Evaluates tool selection performance of the AI concierge agent."""
     
-    def __init__(self, api_base_url: str = "http://localhost:8000", test_phone: str = "+1234567890"):
+    def __init__(self, api_base_url: str = "http://localhost:8000", test_phone: str = "+14155550123"):
         self.api_base_url = api_base_url
         self.test_phone = test_phone
         self.results = []
