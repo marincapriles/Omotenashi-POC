@@ -1,0 +1,146 @@
+================================================================================
+OMOTENASHI CONCIERGE TOOL SELECTION EVALUATION REPORT
+Date: 2025-06-21
+Test Cases: 100
+================================================================================
+
+OVERALL PERFORMANCE:
+----------------------------------------
+Precision: 0.401 (57/142)
+Recall:    0.600 (57/95)
+F1 Score:  0.481
+Tests:     100
+
+PER-TOOL PERFORMANCE:
+----------------------------------------
+Tool                      Precision  Recall     F1         TP    FP    FN   
+--------------------------------------------------------------------------------
+guest_profile             0.293      0.750      0.421      12    29    4    
+booking_details           0.352      1.000      0.521      19    35    0    
+property_info             0.762      1.000      0.865      16    5     0    
+escalate_to_manager       0.182      0.200      0.190      2     9     8    
+schedule_cleaning         0.000      0.000      0.000      0     5     11   
+modify_checkout_time      0.800      0.727      0.762      8     2     3    
+request_transport         0.000      0.000      0.000      0     0     12   
+
+PER-CATEGORY PERFORMANCE:
+----------------------------------------
+Category             Precision  Recall     F1         Tests 
+----------------------------------------------------------------------
+cleaning_vague       0.000      0.000      0.000      5     
+transport            0.000      0.000      0.000      10    
+no_tool              0.000      0.000      0.000      5     
+multi_tool           0.500      0.500      0.500      5     
+checkout             0.286      0.800      0.421      10    
+booking_info         1.000      1.000      1.000      15    
+cleaning             0.000      0.000      0.000      10    
+property_info        0.600      1.000      0.750      15    
+guest_info           0.750      0.800      0.774      15    
+escalation           0.200      0.200      0.200      10    
+
+DETAILED TEST RESULTS:
+----------------------------------------
+Test   1 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test   2 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test   3 ✗ | Expected: guest_profile                  | Actual: guest_profile, booking_details | guest_info
+Test   4 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test   5 ✗ | Expected: guest_profile                  | Actual: None                           | guest_info
+Test   6 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test   7 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test   8 ✗ | Expected: guest_profile                  | Actual: guest_profile, booking_details | guest_info
+Test   9 ✗ | Expected: guest_profile                  | Actual: guest_profile, booking_details | guest_info
+Test  10 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test  11 ✗ | Expected: guest_profile                  | Actual: None                           | guest_info
+Test  12 ✗ | Expected: guest_profile                  | Actual: None                           | guest_info
+Test  13 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test  14 ✗ | Expected: guest_profile                  | Actual: guest_profile, booking_details | guest_info
+Test  15 ✓ | Expected: guest_profile                  | Actual: guest_profile                  | guest_info
+Test  16 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  17 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  18 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  19 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  20 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  21 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  22 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  23 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  24 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  25 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  26 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  27 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  28 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  29 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  30 ✓ | Expected: booking_details                | Actual: booking_details                | booking_info
+Test  31 ✓ | Expected: property_info                  | Actual: property_info                  | property_info
+Test  32 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  33 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  34 ✓ | Expected: property_info                  | Actual: property_info                  | property_info
+Test  35 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  36 ✗ | Expected: property_info                  | Actual: property_info, schedule_cleaning | property_info
+Test  37 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  38 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  39 ✓ | Expected: property_info                  | Actual: property_info                  | property_info
+Test  40 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  41 ✓ | Expected: property_info                  | Actual: property_info                  | property_info
+Test  42 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  43 ✓ | Expected: property_info                  | Actual: property_info                  | property_info
+Test  44 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  45 ✗ | Expected: property_info                  | Actual: property_info, escalate_to_manager | property_info
+Test  46 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  47 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  48 ✗ | Expected: schedule_cleaning              | Actual: booking_details                | cleaning
+Test  49 ✗ | Expected: schedule_cleaning              | Actual: booking_details                | cleaning
+Test  50 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  51 ✗ | Expected: schedule_cleaning              | Actual: booking_details                | cleaning
+Test  52 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  53 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  54 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  55 ✗ | Expected: schedule_cleaning              | Actual: guest_profile, booking_details | cleaning
+Test  56 ✗ | Expected: None                           | Actual: guest_profile, schedule_cleaning | cleaning_vague
+Test  57 ✗ | Expected: None                           | Actual: guest_profile                  | cleaning_vague
+Test  58 ✗ | Expected: None                           | Actual: schedule_cleaning              | cleaning_vague
+Test  59 ✗ | Expected: None                           | Actual: guest_profile, schedule_cleaning | cleaning_vague
+Test  60 ✗ | Expected: None                           | Actual: schedule_cleaning              | cleaning_vague
+Test  61 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  62 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, booking_details | checkout
+Test  63 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  64 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  65 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  66 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  67 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  68 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  69 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, booking_details | checkout
+Test  70 ✗ | Expected: modify_checkout_time           | Actual: guest_profile, modify_checkout_time, booking_details | checkout
+Test  71 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  72 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  73 ✗ | Expected: request_transport              | Actual: guest_profile                  | transport
+Test  74 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  75 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  76 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  77 ✗ | Expected: request_transport              | Actual: booking_details                | transport
+Test  78 ✗ | Expected: request_transport              | Actual: None                           | transport
+Test  79 ✗ | Expected: request_transport              | Actual: guest_profile, booking_details | transport
+Test  80 ✗ | Expected: request_transport              | Actual: None                           | transport
+Test  81 ✗ | Expected: escalate_to_manager            | Actual: property_info, booking_details | escalation
+Test  82 ✗ | Expected: escalate_to_manager            | Actual: property_info                  | escalation
+Test  83 ✓ | Expected: escalate_to_manager            | Actual: escalate_to_manager            | escalation
+Test  84 ✗ | Expected: escalate_to_manager            | Actual: property_info                  | escalation
+Test  85 ✗ | Expected: escalate_to_manager            | Actual: property_info                  | escalation
+Test  86 ✗ | Expected: escalate_to_manager            | Actual: property_info, booking_details | escalation
+Test  87 ✓ | Expected: escalate_to_manager            | Actual: escalate_to_manager            | escalation
+Test  88 ✗ | Expected: escalate_to_manager            | Actual: None                           | escalation
+Test  89 ✗ | Expected: escalate_to_manager            | Actual: None                           | escalation
+Test  90 ✗ | Expected: escalate_to_manager            | Actual: booking_details                | escalation
+Test  91 ✗ | Expected: booking_details, request_transport | Actual: guest_profile, modify_checkout_time, booking_details | multi_tool
+Test  92 ✗ | Expected: booking_details, schedule_cleaning | Actual: booking_details                | multi_tool
+Test  93 ✗ | Expected: guest_profile, booking_details | Actual: modify_checkout_time, booking_details | multi_tool
+Test  94 ✓ | Expected: booking_details, property_info | Actual: property_info, booking_details | multi_tool
+Test  95 ✗ | Expected: modify_checkout_time, request_transport | Actual: guest_profile, booking_details | multi_tool
+Test  96 ✓ | Expected: None                           | Actual: None                           | no_tool
+Test  97 ✓ | Expected: None                           | Actual: None                           | no_tool
+Test  98 ✓ | Expected: None                           | Actual: None                           | no_tool
+Test  99 ✓ | Expected: None                           | Actual: None                           | no_tool
+Test 100 ✓ | Expected: None                           | Actual: None                           | no_tool
+
+================================================================================
+END OF REPORT
+================================================================================
