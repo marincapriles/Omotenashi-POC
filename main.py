@@ -244,15 +244,15 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
         
         logger.info(f"Creating agent for phone: {phone}, guest found: {guest is not None}")
         
-        # Note: Using STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION instead of OPENAI_FUNCTIONS
-        # since Claude doesn't support OpenAI function calling format
+        # FIXED: Switch to OPENAI_FUNCTIONS for proper tool calling with Claude
+        # This enables actual function execution instead of text-based responses
         return initialize_agent(
             tools=tools,
             llm=llm,
-            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            agent=AgentType.OPENAI_FUNCTIONS,
             memory=memory_service.get_memory(phone),
             system_message=SystemMessage(content=final_prompt),
-            verbose=False,
+            verbose=True,  # Enable for debugging tool calls
         )
     except Exception as e:
         logger.error(f"Error creating agent for phone {phone}: {e}")
