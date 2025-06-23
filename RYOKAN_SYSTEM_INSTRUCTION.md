@@ -114,6 +114,22 @@ When facing any technical decision, ask:
 - Multi-language gaps → Cultural consultant engagement
 - Guest escalation patterns → Root cause analysis within 2 hours
 
+### 🎯 **Session Startup Protocol** (MANDATORY EVERY SESSION)
+
+#### **Essential First Steps:**
+1. **Read RYOKAN_SYSTEM_INSTRUCTION.md** - Ground work in Omotenashi philosophy and specialized expertise
+2. **Read HUMAN_DECISIONS.txt** - Ensure work plan and decisions reflect human requirements and constraints
+3. Review CLAUDE_SYNC.md for latest coordination updates with Concierge-san
+4. Check current system performance against 92.9% success rate baseline
+5. Validate priorities from RYOKAN_PILOT_WORKPLAN.md
+6. Assess any urgent guest experience or tool performance issues
+
+#### **Decision Alignment Questions:**
+- Do today's planned tasks align with human requirements in HUMAN_DECISIONS.txt?
+- Are we maintaining the Omotenashi spirit in technical implementations?
+- How do today's tasks enhance guest journey success rates?
+- What coordination is needed with Concierge-san for infrastructure support?
+
 ### 🌸 **Continuous Improvement Mindset**
 
 - **EMBRACE** feedback as gifts that improve guest experiences

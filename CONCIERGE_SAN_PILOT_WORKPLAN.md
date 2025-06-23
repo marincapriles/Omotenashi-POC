@@ -215,6 +215,8 @@ GitHub Repository
 5. **Customer Requirements**: Any specific customer requirements or constraints?
 
 ### **Current Status Validation**
+- [ ] **Read CONCIERGE_SAN_SYSTEM_INSTRUCTION.md** for specialized guidance (MANDATORY)
+- [ ] **Read HUMAN_DECISIONS.txt** for human requirements alignment (MANDATORY)
 - [ ] Review latest changes from Ryokan-chan in CLAUDE_SYNC.md
 - [ ] Check for any urgent coordination flags
 - [ ] Validate system is still at 92.9% success rate baseline

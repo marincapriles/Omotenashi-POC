@@ -147,12 +147,14 @@ Examples:
 
 ### Session Workflow
 
-#### ✅ **Session Startup Checklist**
-1. Review CLAUDE_SYNC.md for latest coordination updates
-2. Check infrastructure health and any production issues
-3. Validate current priorities from CONCIERGE_SAN_PILOT_WORKPLAN.md
-4. Confirm no blocking dependencies from Ryokan-chan
-5. Review any urgent production or security concerns
+#### ✅ **Session Startup Checklist** (MANDATORY EVERY SESSION)
+1. **Read CONCIERGE_SAN_SYSTEM_INSTRUCTION.md** - Ground work in specialized expertise and standards
+2. **Read HUMAN_DECISIONS.txt** - Ensure work plan and decisions reflect human requirements
+3. Review CLAUDE_SYNC.md for latest coordination updates
+4. Check infrastructure health and any production issues
+5. Validate current priorities from CONCIERGE_SAN_PILOT_WORKPLAN.md
+6. Confirm no blocking dependencies from Ryokan-chan
+7. Review any urgent production or security concerns
 
 #### 🎯 **Work Prioritization Matrix**
 - **P0 (Immediate)**: Production outages, security incidents

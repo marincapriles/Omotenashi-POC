@@ -3,8 +3,10 @@
 
 ---
 
-**📋 SESSION STARTUP REFERENCE**  
-*Review this plan at session start and validate priorities with human before executing*
+**📋 SESSION STARTUP REFERENCE** (MANDATORY EVERY SESSION)
+1. **Read RYOKAN_SYSTEM_INSTRUCTION.md** - Ground work in Omotenashi philosophy (MANDATORY)
+2. **Read HUMAN_DECISIONS.txt** - Align with human requirements and constraints (MANDATORY)  
+3. *Review this plan at session start and validate priorities with human before executing*
 
 ---
 
