@@ -282,6 +282,60 @@
         color: #667eea;
       }
 
+      .tools-indicator {
+        margin-top: 8px;
+        padding: 8px 12px;
+        background: #e8f4f8;
+        border-radius: 8px;
+        border-left: 3px solid #17a2b8;
+        font-size: 12px;
+        color: #0c5460;
+      }
+
+      .tools-indicator.no-tools {
+        background: #f8f9fa;
+        border-left-color: #6c757d;
+        color: #6c757d;
+      }
+
+      .tools-indicator strong {
+        color: #17a2b8;
+      }
+
+      .tools-indicator.no-tools strong {
+        color: #6c757d;
+      }
+
+      .tool-badge {
+        display: inline-block;
+        background: #17a2b8;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 10px;
+        margin: 2px 2px 0 0;
+        font-weight: 500;
+      }
+
+      .debug-toggle {
+        cursor: pointer;
+        color: #6c757d;
+        text-decoration: underline;
+        font-size: 10px;
+        margin-left: 8px;
+      }
+
+      .debug-info {
+        display: none;
+        margin-top: 5px;
+        padding: 5px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        font-size: 10px;
+        color: #6c757d;
+        border: 1px solid #e9ecef;
+      }
+
       @media (max-width: 768px) {
         .container {
           margin: 10px;
@@ -531,6 +585,7 @@
                   msg.type === "user" ? "You" : "Concierge"
                 }</div>
                 <div>${this.formatMessage(msg.content)}</div>
+                ${this.renderToolsIndicator(msg)}
               </div>
             </div>
           `
@@ -542,6 +597,37 @@
 
         formatMessage(content) {
           return content.replace(/\n/g, "<br>");
+        }
+
+        renderToolsIndicator(msg) {
+          if (msg.type === "user" || !msg.tools_used) {
+            return "";
+          }
+
+          const toolsUsed = msg.tools_used || [];
+          const debugInfo = msg.debug_info || {};
+          
+          if (toolsUsed.length === 0) {
+            return `
+              <div class="tools-indicator no-tools">
+                <strong>🤖 Tools:</strong> None used
+                ${debugInfo ? `<span class="debug-toggle" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'">debug</span>
+                <div class="debug-info">${JSON.stringify(debugInfo, null, 2)}</div>` : ''}
+              </div>
+            `;
+          }
+
+          const toolBadges = toolsUsed.map(tool => 
+            `<span class="tool-badge">${tool}</span>`
+          ).join('');
+
+          return `
+            <div class="tools-indicator">
+              <strong>🔧 Tools:</strong> ${toolBadges}
+              ${debugInfo ? `<span class="debug-toggle" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'">debug</span>
+              <div class="debug-info">${JSON.stringify(debugInfo, null, 2)}</div>` : ''}
+            </div>
+          `;
         }
 
         async sendMessage() {
@@ -579,10 +665,12 @@
 
             const data = await response.json();
 
-            // Add assistant response to conversation
+            // Add assistant response to conversation with tool information
             this.conversation.push({
               type: "assistant",
               content: data.response,
+              tools_used: data.tools_used || [],
+              debug_info: data.debug_info || {}
             });
             this.renderConversation();
           } catch (error) {
