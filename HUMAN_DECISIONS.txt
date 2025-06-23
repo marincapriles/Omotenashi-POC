@@ -1,0 +1,205 @@
+================================================================================
+OMOTENASHI PILOT - HUMAN DECISIONS REQUIRED
+================================================================================
+Instructions: Write your decisions below each question. Both Claude instances will
+review this file at session start and incorporate your decisions into their work.
+
+Format: Just write your response after each "DECISION:" line.
+Save the file after making changes - Claude instances will detect updates.
+
+================================================================================
+
+[HIGH PRIORITY - BLOCKING PILOT DEPLOYMENT]
+
+DECISION-001: DEPLOYMENT PLATFORM
+Question: Which cloud platform should we use for pilot deployment?
+Options: 
+- AWS (most mature, higher cost)
+- Azure (good integration, mid cost) 
+- GCP (competitive pricing, good AI tools)
+- DigitalOcean (simple, cost-effective)
+- Other (specify)
+
+DECISION: 
+
+
+
+DECISION-002: PILOT TIMELINE  
+Question: How many weeks until customer pilot launch?
+Context: We need this to prioritize features vs. stability
+Options:
+- 2-3 weeks (minimal features, focus on core functionality)
+- 4-6 weeks (balanced approach, current plan)
+- 6-8 weeks (full feature set, maximum polish)
+
+DECISION:
+
+
+
+DECISION-003: SPANISH LANGUAGE SUPPORT
+Question: Should we deploy with current 66.7% Spanish success rate or wait for fixes?
+Context: Ryokan-chan can fix Spanish gaps, but it takes time
+Options:
+- Deploy now with English/French only (faster to market)
+- Wait for Spanish fixes (67% → 85%+ success rate)
+- Deploy with warning about Spanish limitations
+
+DECISION:
+
+
+
+DECISION-004: CONCURRENT USER CAPACITY
+Question: How many concurrent guests should the system handle during pilot?
+Context: Affects infrastructure sizing and costs
+Options:
+- 10-20 guests (small luxury property)
+- 20-50 guests (medium property or multiple small)
+- 50-100 guests (large property or multiple properties)
+
+DECISION:
+
+
+
+================================================================================
+
+[MEDIUM PRIORITY - AFFECTS USER EXPERIENCE]
+
+DECISION-005: AUTHENTICATION UX
+Question: What verification methods should we offer guests?
+Context: Currently planning SMS-only via phone number
+Options:
+- SMS only (simple, works everywhere)
+- SMS + Email verification (backup option)
+- SMS + WhatsApp (for international guests)
+- Add social login (Google, Apple)
+
+DECISION:
+
+
+
+DECISION-006: ERROR HANDLING AGGRESSIVENESS
+Question: How should the system handle tool failures?
+Context: Balance between reliability and user experience
+Options:
+- Conservative (fail fast, escalate to human)
+- Moderate (retry once, then escalate)
+- Aggressive (multiple retries, fallback tools)
+
+DECISION:
+
+
+
+DECISION-007: MONITORING DEPTH
+Question: What level of monitoring do you want during pilot?
+Context: More monitoring = better insights but higher complexity
+Options:
+- Basic (uptime, errors, response times)
+- Standard (+ tool usage, guest satisfaction, performance)
+- Comprehensive (+ business analytics, revenue tracking, prediction)
+
+DECISION:
+
+
+
+DECISION-008: DATA BACKUP FREQUENCY
+Question: How often should we backup conversation and guest data?
+Context: Balance between data safety and storage costs
+Options:
+- Real-time (continuous backup, highest cost)
+- Hourly (good balance, recommended)
+- Daily (lower cost, some risk)
+
+DECISION:
+
+
+
+================================================================================
+
+[FUTURE DECISIONS - NOT BLOCKING CURRENT WORK]
+
+DECISION-009: MULTI-PROPERTY TIMELINE
+Question: When should we implement support for multiple properties?
+Context: Current system designed for single property (Villa Azul)
+Options:
+- During pilot (if customer requests)
+- After successful pilot (Phase 2)
+- Only if scaling to new customers
+
+DECISION:
+
+
+
+DECISION-010: FIRST EXTERNAL INTEGRATIONS
+Question: Which external services should we integrate first after pilot?
+Context: Currently using mock responses for restaurants, spas, etc.
+Priority order (1=highest):
+__ Restaurant reservation systems (OpenTable, Resy)
+__ Spa/wellness booking platforms
+__ Transportation services (Uber, local providers)
+__ Activity/tour booking platforms
+__ Property management systems
+__ Grocery delivery services
+
+DECISION:
+
+
+
+DECISION-011: PRICING MODEL APPROACH
+Question: How should we structure pricing for property managers?
+Context: Helps determine what analytics/billing features to build
+Options:
+- Per-guest per-stay (usage-based)
+- Monthly subscription (predictable revenue)
+- Commission on bookings generated (performance-based)
+- Tiered plans (basic/premium features)
+
+DECISION:
+
+
+
+DECISION-012: SCALING STRATEGY
+Question: How should we handle growth beyond pilot success?
+Context: Determines architecture decisions and team planning
+Options:
+- Focus on single luxury properties (niche market)
+- Expand to multiple property types (broader market)
+- White-label for property management companies
+- Build platform for developers (API-first)
+
+DECISION:
+
+
+
+================================================================================
+
+[SPECIAL INSTRUCTIONS]
+
+If you want to add new decisions or modify existing ones, add them here:
+
+NEW DECISION: 
+Question:
+Context:
+Options:
+
+DECISION:
+
+
+
+================================================================================
+
+COMMUNICATION PREFERENCES:
+
+How should Claude instances notify you of important updates?
+- Update this file with [CLAUDE-UPDATE] sections? Yes/No: 
+- Use commit messages for urgent items? Yes/No:
+- Create summary reports? Frequency:
+
+DECISION:
+
+
+
+================================================================================
+
+Last Updated: 2025-12-22
+Status: Awaiting human decisions
+Priority: High priority decisions block pilot deployment

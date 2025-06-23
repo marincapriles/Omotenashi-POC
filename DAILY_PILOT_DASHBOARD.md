@@ -34,9 +34,10 @@ python3 sync_check.py
 cat CLAUDE_SYNC.md | tail -30
 ```
 
-### **Step 4: Load Your Workplan**
+### **Step 4: Load Your Workplan & Check Human Decisions**
 - **Concierge-san**: Open `CONCIERGE_SAN_PILOT_WORKPLAN.md`
 - **Ryokan-chan**: Open `RYOKAN_PILOT_WORKPLAN.md`
+- **Both Instances**: Check `HUMAN_DECISIONS.txt` for new decisions and incorporate them
 
 ---
 
@@ -111,21 +112,27 @@ cat CLAUDE_SYNC.md | tail -30
 
 ## ⚠️ **DECISIONS YOU NEED TO MAKE**
 
-### **🔥 High Priority Decisions**
+📝 **Decision Communication**: Use `HUMAN_DECISIONS.txt` file
+- Write your decisions directly in the file after each "DECISION:" line
+- Both Claude instances check this file at session start
+- No need for complex formatting - just write your response
+- Save the file after making changes
+
+### **🔥 High Priority Decisions (Blocking Deployment)**
 1. **Deployment Platform**: AWS, Azure, GCP, or other cloud provider?
-2. **Pilot Timeline**: How many weeks until customer launch?
+2. **Pilot Timeline**: How many weeks until customer launch?  
 3. **Spanish Language**: Deploy with 66.7% Spanish support or wait for fixes?
 4. **Guest Volume**: How many concurrent users should we design for?
 
-### **📅 Medium Priority Decisions**  
+### **📅 Medium Priority Decisions (Affects Experience)**
 5. **Authentication UX**: SMS-only or offer alternative verification methods?
 6. **Monitoring Depth**: Basic uptime monitoring or comprehensive analytics?
 7. **Error Handling**: How aggressive should retry logic be?
 8. **Data Backup**: How frequently should we backup conversation data?
 
-### **🔮 Future Decisions**
+### **🔮 Future Decisions (Planning)**
 9. **Multi-Property**: When to implement support for multiple properties?
-10. **Integration Strategy**: Which external services to integrate first (restaurants, spas)?
+10. **Integration Strategy**: Which external services to integrate first?
 11. **Pricing Model**: How to structure pricing for property managers?
 12. **Scaling Plan**: When and how to handle growth beyond pilot?
 
