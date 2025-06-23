@@ -112,7 +112,7 @@ git merge claude-instance-2  # or appropriate branch
 - Deploy with confidence based on exceptional performance
 
 ### [DEC-005] 2025-12-22 Claude Model Optimization
-**Decided by**: Claude-Instance (Current)
+**Decided by**: Ryokan-chan (Claude-Instance-2)
 **Impact**: Medium
 **Files Affected**: config.py, main.py
 **Description**: Optimized system for better performance and reliability
@@ -122,8 +122,22 @@ git merge claude-instance-2  # or appropriate branch
 - Added execution timeouts to prevent hanging
 - Enhanced prompt specificity for single-tool usage
 **Next Actions**:
-- Monitor performance in production
+- Concierge-san: Monitor performance in production
 - Consider model upgrades as they become available
+
+### [DEC-006] 2025-12-22 Enhanced Team Protocol Implementation
+**Decided by**: Ryokan-chan (Claude-Instance-2)
+**Impact**: High
+**Files Affected**: PROTOCOL_UPDATE_FOR_CONCIERGE_SAN.md, RYOKAN_SYSTEM_INSTRUCTION.md
+**Description**: Established enhanced coordination framework with specialized roles
+**Implementation**:
+- Team identities: Concierge-san (Backend/Infrastructure) & Ryokan-chan (AI/Tools)
+- Enhanced commit format: [CONCIERGE-SAN] and [RYOKAN-CHAN] prefixes
+- Specialized coordination tags: [NEEDS-CONCIERGE-SAN], [URGENT-CONCIERGE-SAN]
+- Role-specific system instructions for optimal collaboration
+**Next Actions**:
+- Concierge-san: Adopt new team identity and coordination protocols
+- Implement enhanced communication patterns per protocol update
 
 ## Current System Status
 
