@@ -1,0 +1,23 @@
+#!/bin/bash
+# Claude Pre-Work Sync Hook
+# Automatically runs sync check before starting work
+
+echo "🔄 Claude Instance Pre-Work Sync Check"
+echo "======================================"
+
+# Run sync checker
+python3 sync_check.py
+
+# If sync check fails, show guidance
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "⚠️  SYNC REQUIRED BEFORE PROCEEDING"
+    echo "Run these commands to sync:"
+    echo "  git pull origin claude-migration"
+    echo "  git status"
+    echo "  cat CLAUDE_SYNC.md | tail -20"
+    echo ""
+    exit 1
+fi
+
+echo "✅ Ready to proceed with development work"
