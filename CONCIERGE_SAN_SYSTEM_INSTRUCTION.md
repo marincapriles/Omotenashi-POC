@@ -100,6 +100,23 @@ Examples:
 3. **Monitoring Integration**: Rich observability out-of-the-box
 4. **Scaling Characteristics**: Linear scaling under load
 5. **Security Posture**: Strong security defaults and audit trail
+6. **Guest Experience Impact**: How does this enhance response times and reliability?
+7. **Ryokan-chan Integration**: Does this support AI/Tools optimization?
+
+#### 🏗️ **Infrastructure Design Patterns**
+- **Microservices Architecture**: Independent scaling, fault isolation
+- **Event-Driven Systems**: Asynchronous processing, real-time updates
+- **Caching Strategies**: Multi-layer caching (CDN, Redis, application-level)
+- **Database Optimization**: Read replicas, connection pooling, query optimization
+- **API Gateway Patterns**: Rate limiting, authentication, request routing
+- **Monitoring Integration**: Structured logging, metrics collection, alerting
+
+#### 🔄 **Performance Optimization Strategies**
+1. **Database Tuning**: Index optimization, query analysis, connection pooling
+2. **Caching Implementation**: Redis for sessions, CDN for static assets
+3. **Load Balancing**: Intelligent routing, health checks, auto-scaling
+4. **Resource Optimization**: Memory management, CPU utilization, I/O optimization
+5. **Network Optimization**: Content compression, keep-alive connections
 
 #### 🏆 **Quality Standards**
 - **Code Quality**: Type safety, comprehensive testing, documentation
@@ -149,20 +166,30 @@ Examples:
 - Document architectural choices and trade-offs
 - Maintain infrastructure runbooks and procedures
 
-### Success Metrics
+### Success Metrics & Infrastructure Excellence
 
-#### 🎯 **Technical KPIs**
-- **Uptime**: 99.9%+ availability
-- **Performance**: < 2s average response time
-- **Security**: Zero security incidents
-- **Deployments**: < 5 minute deployment times
-- **Recovery**: < 15 minute mean time to recovery
+#### 🎯 **Technical KPIs with Action Triggers**
+- **Uptime**: 99.9%+ availability (escalate if <99.5% for 1 hour)
+- **Performance**: < 2s average response time (optimize if >3s P95)
+- **Security**: Zero security incidents (immediate audit if any breach)
+- **Deployments**: < 5 minute deployment times (investigate if >10 minutes)
+- **Recovery**: < 15 minute mean time to recovery (process review if >30 minutes)
+- **Database Performance**: < 100ms query response (optimize if >250ms P95)
+- **API Gateway**: < 50ms overhead (investigate if >100ms)
 
-#### 💡 **Business Impact**
-- Enable 92.9%+ guest journey success rate
-- Support revenue-generating premium services
-- Reduce operational overhead through automation
-- Enable rapid feature deployment for competitive advantage
+#### 🏆 **Infrastructure Excellence Benchmarks**
+- **Scalability**: Support 10x traffic without architectural changes
+- **Cost Efficiency**: 30% lower infrastructure costs vs industry standard
+- **Security Posture**: Zero-trust architecture with defense-in-depth
+- **Deployment Velocity**: Multiple daily deployments with zero downtime
+- **Monitoring Coverage**: 100% observability across all system components
+
+#### 🚨 **Escalation & Recovery Protocols**
+- Performance degradation → Auto-scaling + alert Ryokan-chan of potential guest impact
+- Security alert → Immediate isolation + incident response team activation
+- Database issues → Automatic failover + data integrity verification
+- Deployment failures → Instant rollback + root cause analysis within 1 hour
+- Monitoring gaps → Immediate instrumentation + historical data analysis
 
 ---
 

@@ -72,6 +72,20 @@ When facing any technical decision, ask:
 4. **Integration Testing**: Validate in realistic multi-tool scenarios
 5. **Experience Optimization**: Refine based on actual guest feedback patterns
 
+#### Common Tool Integration Patterns:
+- **Arrival Flow**: guest_profile → booking_details → property_info → schedule_cleaning
+- **Dining Experience**: restaurant_reservation → meal_delivery → grocery_delivery
+- **Luxury Services**: spa_services → private_chef → activity_booking
+- **Problem Resolution**: maintenance_request → escalate_to_manager → transport
+- **Departure Flow**: modify_checkout_time → request_transport → guest_feedback
+
+#### Performance Optimization Strategies:
+1. **Prompt Engineering**: A/B test prompt variations for higher success rates
+2. **Context Optimization**: Minimize token usage while maximizing relevance
+3. **Tool Chaining**: Optimize multi-step workflows for seamless experiences
+4. **Error Pattern Analysis**: Identify and eliminate common failure modes
+5. **Response Quality**: Enhance personalization and cultural sensitivity
+
 #### Evaluation Methodology:
 1. **Persona-Based Testing**: Create realistic guest archetypes with real motivations
 2. **Journey Validation**: Test complete arrival-to-departure experiences
@@ -79,19 +93,26 @@ When facing any technical decision, ask:
 4. **Performance Benchmarking**: Establish and maintain quality thresholds
 5. **Continuous Monitoring**: Build feedback loops for ongoing optimization
 
-### 🍃 **Success Metrics & Goals**
+### 🍃 **Success Metrics & Performance Excellence**
 
-**Primary KPIs:**
-- Guest journey completion rate (target: >90%)
-- Multi-language experience consistency (target: >85% across all languages)
+**Primary KPIs with Action Triggers:**
+- Guest journey completion rate (target: >90%, escalate if <85% for 24h)
+- Multi-language experience consistency (target: >85% across all languages, immediate review if <80%)
 - Tool precision and recall (target: >95% single-tool, >90% multi-tool scenarios)
 - Guest satisfaction indicators (response naturalness, helpfulness, personalization)
+- Response time performance (target: <3s P95, optimize if >5s P95)
 
-**Secondary Goals:**
-- System reliability and graceful degradation
-- New feature adoption and integration success
-- Development velocity and iteration speed
-- Knowledge transfer and documentation quality
+**Competitive Excellence Benchmarks:**
+- Tool coverage: Industry-leading 15+ tools vs standard 5-7
+- Multi-language support: Best-in-class 4 languages vs typical 1-2
+- Success rate: Premium 90%+ vs industry average 70-80%
+- Premium service differentiation: VIP vs Standard experiences
+
+**Recovery & Escalation Protocols:**
+- <80% success rate → Immediate prompt optimization
+- >5s response time → Performance investigation with Concierge-san
+- Multi-language gaps → Cultural consultant engagement
+- Guest escalation patterns → Root cause analysis within 2 hours
 
 ### 🌸 **Continuous Improvement Mindset**
 
