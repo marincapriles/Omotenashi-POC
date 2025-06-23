@@ -25,6 +25,8 @@ CRITICAL TOOL SELECTION RULES:
 - Only call additional tools if the first tool doesn't provide sufficient information
 
 AVAILABLE TOOLS:
+
+CORE SERVICES:
 - guest_profile: Get guest preferences and information (no parameters needed)
 - booking_details: Get reservation details (no parameters needed)  
 - property_info: Search for hotel amenities, services, and facilities information
@@ -32,6 +34,18 @@ AVAILABLE TOOLS:
 - modify_checkout_time: Change guest's checkout time
 - request_transport: Arrange airport transportation
 - escalate_to_manager: Escalate questions to property manager when you cannot find answers
+
+HIGH-IMPACT SERVICES:
+- restaurant_reservation: Make restaurant reservations and dining bookings
+- grocery_delivery: Arrange grocery and supply delivery to property
+- maintenance_request: Report property issues (AC, WiFi, appliances, etc.)
+- activity_booking: Book local tours, excursions, and experiences
+- meal_delivery: Order food delivery from local restaurants
+
+LUXURY SERVICES:
+- spa_services: Book in-villa spa treatments and wellness services
+- private_chef: Arrange private chef for in-villa dining experiences
+- local_recommendations: Get personalized local activity recommendations
 
 PRECISE TOOL USAGE EXAMPLES:
 
@@ -54,6 +68,8 @@ TOOL SELECTION DECISION PROCESS:
 5. NEVER use tools "just in case" or for context
 
 SPECIFIC TOOL TRIGGERS:
+
+CORE TOOLS:
 - request_transport: ONLY when guest mentions airports, rides, cars, taxis, transportation TO somewhere
 - guest_profile: ONLY when asking about guest's name, preferences, status, dietary restrictions
 - booking_details: ONLY when asking about reservation, room, check-in/out dates, confirmation
@@ -61,6 +77,18 @@ SPECIFIC TOOL TRIGGERS:
 - schedule_cleaning: ONLY when requesting housekeeping with specific time
 - modify_checkout_time: ONLY when changing departure time
 - escalate_to_manager: ONLY when request is outside your capabilities
+
+HIGH-IMPACT TOOLS:
+- restaurant_reservation: ONLY when booking dinner, restaurants, dining reservations
+- grocery_delivery: ONLY when requesting groceries, food supplies, beverages for delivery
+- maintenance_request: ONLY when reporting broken AC, WiFi issues, plumbing, appliance problems
+- activity_booking: ONLY when booking tours, excursions, local experiences, activities
+- meal_delivery: ONLY when ordering food delivery, takeout, restaurant delivery
+
+LUXURY TOOLS:
+- spa_services: ONLY when requesting massage, spa treatments, wellness services to villa
+- private_chef: ONLY when requesting personal chef, private dining, special meal preparation
+- local_recommendations: ONLY when asking for area suggestions, local tips, activity recommendations
 
 IMPORTANT RULES:
 - The tools are pre-configured for this specific guest
@@ -208,5 +236,53 @@ TOOL_DESCRIPTIONS = {
         "Use this when you've tried other tools but still can't help the guest. "
         "Arguments: question (string - the guest's question or request that needs escalation), "
         "context (string - optional, additional context about the situation)"
+    ),
+    
+    # HIGH-IMPACT TIER TOOL DESCRIPTIONS
+    "restaurant_reservation": (
+        "Make restaurant reservations for guests. Use when guests want to book dining experiences. "
+        "Arguments: restaurant_preference (string - cuisine type or specific restaurant), "
+        "date_time (string - when they want to dine), party_size (int - number of people), "
+        "special_occasion (string - optional, special event or celebration)"
+    ),
+    "grocery_delivery": (
+        "Arrange grocery delivery to the property. Use when guests need food, beverages, or supplies. "
+        "Arguments: items_requested (string - list of items needed), "
+        "delivery_time (string - when items should be delivered), "
+        "special_instructions (string - optional, dietary restrictions or special requests)"
+    ),
+    "maintenance_request": (
+        "Report and track maintenance issues at the property. Use for broken appliances, AC, plumbing, WiFi issues. "
+        "Arguments: issue_description (string - what's broken or not working), "
+        "location (string - where in the property), urgency (string - low/normal/high/emergency)"
+    ),
+    "activity_booking": (
+        "Book local activities and experiences for guests. Use for tours, excursions, entertainment. "
+        "Arguments: activity_type (string - type of activity requested), "
+        "preferred_date (string - when they want to do it), participants (int - number of people), "
+        "special_requirements (string - optional, special needs or preferences)"
+    ),
+    "meal_delivery": (
+        "Order meal delivery from local restaurants. Use for immediate food delivery needs. "
+        "Arguments: cuisine_type (string - type of food), meal_items (string - specific dishes), "
+        "delivery_time (string - when food should arrive)"
+    ),
+    
+    # LUXURY TIER TOOL DESCRIPTIONS
+    "spa_services": (
+        "Book in-villa spa and wellness services. Use for massage, beauty treatments, wellness experiences. "
+        "Arguments: service_type (string - massage, facial, etc.), preferred_time (string - appointment time), "
+        "participants (int - number of people), special_requests (string - optional, special arrangements)"
+    ),
+    "private_chef": (
+        "Arrange private chef services for in-villa dining experiences. Use for special meals and celebrations. "
+        "Arguments: meal_type (string - breakfast/lunch/dinner), date_time (string - when), "
+        "guests (int - number of people), cuisine_preference (string - cuisine type), "
+        "special_occasion (string - optional, celebration or theme)"
+    ),
+    "local_recommendations": (
+        "Provide personalized local recommendations based on guest profile and preferences. "
+        "Arguments: activity_category (string - dining/activities/shopping/etc.), "
+        "preferences (string - optional, guest interests), timeframe (string - when they want recommendations)"
     ),
 } 

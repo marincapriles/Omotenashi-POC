@@ -13,7 +13,7 @@ load_dotenv()
 
 # Anthropic Configuration
 ANTHROPIC_API_KEY: Optional[str] = os.getenv('ANTHROPIC_API_KEY')
-CLAUDE_MODEL: str = os.getenv('CLAUDE_MODEL', 'claude-opus-4-20250514')
+CLAUDE_MODEL: str = os.getenv('CLAUDE_MODEL', 'claude-3-5-sonnet-20241022')
 
 # Application Configuration
 MEMORY_EXPIRY_HOURS: int = int(os.getenv('MEMORY_EXPIRY_HOURS', '1'))

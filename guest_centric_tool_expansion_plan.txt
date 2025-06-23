@@ -1,0 +1,145 @@
+🏨 COMPREHENSIVE GUEST-CENTRIC TOOL DESIGN
+================================================
+
+CURRENT TOOL ANALYSIS (7 tools)
+===============================
+✅ guest_profile - Know the guest
+✅ booking_details - Reservation info  
+✅ property_info - Basic property Q&A
+✅ schedule_cleaning - Housekeeping
+✅ modify_checkout_time - Flexibility
+✅ request_transport - Airport/local transport
+✅ escalate_to_manager - Complex requests
+
+GUEST JOURNEY ANALYSIS
+======================
+
+PRE-ARRIVAL PHASE:
+- "Can you stock the fridge with groceries before I arrive?"
+- "I'm celebrating my anniversary - can you arrange something special?"  
+- "What activities should I book in advance?"
+- "What's the weather forecast for my stay?"
+
+ARRIVAL PHASE:
+- "How do I get into the property?"
+- "Where's the nearest grocery store?"
+- "I'm hungry - what delivery options do you have?"
+- "Can you give me a tour of the amenities?"
+
+DURING STAY PHASE:
+- "Book me dinner at the best restaurant in town"
+- "I need a massage therapist to come to the villa"
+- "The air conditioning isn't working properly"
+- "Can you arrange a private chef for tonight?"
+- "What's the best beach to visit today?"
+- "I need someone to walk my dog"
+
+DEPARTURE PHASE:
+- "Can you arrange late luggage storage?"
+- "I left my charger - can you mail it to me?"
+
+RECOMMENDED TOOL EXPANSION (Priority Order)
+===========================================
+
+🔥 HIGH-IMPACT TIER (Implement First)
+=====================================
+
+1. restaurant_reservation
+   - Need: Dining is #1 guest concern at luxury properties
+   - Function: Book tables at local restaurants with preferences/dietary needs
+   - Revenue Impact: High satisfaction + partnership commissions
+
+2. grocery_delivery
+   - Need: Essential for vacation rentals vs hotels
+   - Function: Stock fridge/pantry with guest preferences before/during stay
+   - Revenue Impact: Premium service fees + convenience
+
+3. maintenance_request
+   - Need: Property issues arise frequently
+   - Function: Report and track AC, plumbing, appliances, WiFi issues
+   - Revenue Impact: Prevents negative reviews + operational efficiency
+
+4. activity_booking
+   - Need: Experience curation is key luxury differentiator  
+   - Function: Book tours, excursions, experiences (wine tours, boat trips, etc.)
+   - Revenue Impact: High margins + guest satisfaction
+
+5. meal_delivery
+   - Need: Immediate hunger/convenience needs
+   - Function: Order from local restaurants, room service equivalents
+   - Revenue Impact: Service fees + convenience premium
+
+💎 LUXURY TIER (High Value)
+===========================
+
+6. spa_services
+   - Need: In-villa wellness experiences
+   - Function: Book massage therapists, beauty services to come to property
+   - Revenue Impact: Premium pricing + luxury positioning
+
+7. private_chef
+   - Need: Special occasions, large groups
+   - Function: Arrange in-villa dining experiences
+   - Revenue Impact: Very high margins
+
+8. local_recommendations
+   - Need: Personalized area guidance
+   - Function: Curated suggestions based on guest profile + real-time factors
+   - Revenue Impact: Enhanced experience + partner referrals
+
+🛠️ OPERATIONAL TIER (Essential Support)
+=======================================
+
+9. laundry_service
+   - Need: Extended stays, families
+   - Function: Pickup/delivery laundry services
+   - Revenue Impact: Service fees + convenience
+
+10. emergency_assistance
+    - Need: Medical, security, urgent issues
+    - Function: Connect to appropriate emergency services + property support
+    - Revenue Impact: Guest safety + liability protection
+
+📱 CONVENIENCE TIER (Nice-to-Have)
+=================================
+
+11. weather_forecast
+    - Need: Activity planning, packing decisions
+    - Function: Local weather + activity recommendations
+    - Revenue Impact: Enhanced planning experience
+
+12. pet_services
+    - Need: Growing market of pet-traveling guests  
+    - Function: Pet sitting, dog walking, vet recommendations
+    - Revenue Impact: Expand guest demographics
+
+IMPLEMENTATION STRATEGY
+=======================
+
+Phase 1 (Week 1): Essential Guest Needs
+- restaurant_reservation (dining is critical)
+- grocery_delivery (vacation rental essential)  
+- maintenance_request (operational necessity)
+
+Phase 2 (Week 2): Experience Enhancement
+- activity_booking (luxury differentiation)
+- meal_delivery (convenience)
+- spa_services (luxury positioning)
+
+Phase 3 (Week 3): Complete Service Suite
+- Remaining tools based on guest feedback and usage data
+
+SAMPLE GUEST INTERACTIONS
+=========================
+
+Guest: "Can you stock some wine and breakfast items before I arrive tomorrow?"
+→ grocery_delivery tool + guest preferences
+
+Guest: "The WiFi is really slow in the master bedroom"  
+→ maintenance_request tool + priority tracking
+
+Guest: "I want to book dinner somewhere romantic for our anniversary"
+→ restaurant_reservation tool + occasion context + guest profile
+
+Guest: "What's the best wine tour for tomorrow if it's not raining?"
+→ weather_forecast + activity_booking + local_recommendations

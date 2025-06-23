@@ -1,0 +1,2007 @@
+{
+  "metrics": {
+    "overall": {
+      "precision": 0,
+      "recall": 0.0,
+      "f1": 0,
+      "total_tests": 100,
+      "total_tp": 0,
+      "total_fp": 0,
+      "total_fn": 95
+    },
+    "per_tool": {
+      "guest_profile": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 16
+      },
+      "booking_details": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 19
+      },
+      "property_info": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 16
+      },
+      "schedule_cleaning": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 11
+      },
+      "modify_checkout_time": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 11
+      },
+      "request_transport": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12
+      },
+      "escalate_to_manager": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 10
+      }
+    },
+    "per_category": {
+      "property_info": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 15
+      },
+      "checkout": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 10
+      },
+      "cleaning_vague": {
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "test_count": 5
+      },
+      "escalation": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 10
+      },
+      "multi_tool": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 5
+      },
+      "no_tool": {
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "test_count": 5
+      },
+      "booking_info": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 15
+      },
+      "cleaning": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 10
+      },
+      "guest_info": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 15
+      },
+      "transport": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "test_count": 10
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "test_id": 1,
+      "prompt": "Hi, what's my name?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 2,
+      "prompt": "Can you tell me about my preferences?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 3,
+      "prompt": "Am I a VIP guest?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 4,
+      "prompt": "What language do I prefer?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 5,
+      "prompt": "Hello, I'm new here. Can you help me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 6,
+      "prompt": "What are my dietary restrictions?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 7,
+      "prompt": "Do you have my contact information?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 8,
+      "prompt": "Can you show me my profile?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 9,
+      "prompt": "What's my guest ID?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 10,
+      "prompt": "Tell me about myself",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 11,
+      "prompt": "What do you know about me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 12,
+      "prompt": "Am I registered as a guest here?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 13,
+      "prompt": "What's my preferred room temperature?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 14,
+      "prompt": "Do I have any special requests on file?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 15,
+      "prompt": "What's my guest status?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "guest_info"
+    },
+    {
+      "test_id": 16,
+      "prompt": "When do I check out?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 17,
+      "prompt": "What room am I staying in?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 18,
+      "prompt": "Can you show me my reservation details?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 19,
+      "prompt": "When is my check-in date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 20,
+      "prompt": "What type of room did I book?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 21,
+      "prompt": "How many nights am I staying?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 22,
+      "prompt": "What's my confirmation number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 23,
+      "prompt": "Show me my booking information",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 24,
+      "prompt": "What's included in my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 25,
+      "prompt": "When did I make this reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 26,
+      "prompt": "What's my room number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 27,
+      "prompt": "How much did I pay for this room?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 28,
+      "prompt": "What's my arrival time?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 29,
+      "prompt": "What's my departure date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 30,
+      "prompt": "Can you pull up my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "booking_info"
+    },
+    {
+      "test_id": 31,
+      "prompt": "What's the WiFi password?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 32,
+      "prompt": "What time does the pool open?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 33,
+      "prompt": "Do you have a gym?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 34,
+      "prompt": "What restaurants are nearby?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 35,
+      "prompt": "Tell me about the hotel amenities",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 36,
+      "prompt": "What services do you offer?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 37,
+      "prompt": "Where is the spa located?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 38,
+      "prompt": "Can you tell me about the hotel facilities?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 39,
+      "prompt": "What's the breakfast schedule?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 40,
+      "prompt": "Do you have room service?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 41,
+      "prompt": "Where's the business center?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 42,
+      "prompt": "What are your pool hours?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 43,
+      "prompt": "Do you have a concierge desk?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 44,
+      "prompt": "What's the parking situation?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 45,
+      "prompt": "Tell me about your fitness center",
+      "expected_tools": [
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "property_info"
+    },
+    {
+      "test_id": 46,
+      "prompt": "Can you clean my room tomorrow at 2 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 47,
+      "prompt": "I need housekeeping service on Friday at 11:00 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 48,
+      "prompt": "Please schedule room cleaning for today at 3:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 49,
+      "prompt": "Can you arrange cleaning service for Monday morning at 10 AM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 50,
+      "prompt": "I'd like room service cleaning tomorrow at 1:00 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 51,
+      "prompt": "Schedule housekeeping for Wednesday at 9:30 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 52,
+      "prompt": "Can you clean my room on Thursday at 4:00 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 53,
+      "prompt": "I need cleaning service tomorrow at 12:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 54,
+      "prompt": "Please arrange housekeeping for Sunday at 10:15 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 55,
+      "prompt": "Book room cleaning for next Tuesday at 2:45 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning"
+    },
+    {
+      "test_id": 56,
+      "prompt": "Can you get someone to clean my room this afternoon?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 57,
+      "prompt": "I need cleaning tomorrow morning",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 58,
+      "prompt": "Schedule housekeeping for later today",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 59,
+      "prompt": "Can you clean my room sometime tomorrow?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 60,
+      "prompt": "I need housekeeping in the evening",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "cleaning_vague"
+    },
+    {
+      "test_id": 61,
+      "prompt": "Can I change my checkout to 3 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 62,
+      "prompt": "I need to extend my checkout until 2:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 63,
+      "prompt": "Can you give me a late checkout at 1 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 64,
+      "prompt": "I want to check out at noon instead of 11 AM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 65,
+      "prompt": "Please change my departure time to 4:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 66,
+      "prompt": "Can I get a late checkout until 5 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 67,
+      "prompt": "I need to modify my checkout time to 1:30 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 68,
+      "prompt": "Can you extend my stay until 6 PM checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 69,
+      "prompt": "Change my checkout from 11 AM to 2 PM please",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 70,
+      "prompt": "I want to leave later, can you change my checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "checkout"
+    },
+    {
+      "test_id": 71,
+      "prompt": "Can you get me a ride to SFO airport at 6 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 72,
+      "prompt": "I need transportation to LAX tomorrow at 3:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 73,
+      "prompt": "Please arrange a car to the airport at 8:00 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 74,
+      "prompt": "Can you book airport transport for 5:45 AM to JFK?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 75,
+      "prompt": "I need a taxi to Oakland airport at 7 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 76,
+      "prompt": "Book me a car to SFO at 9:30 AM tomorrow",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 77,
+      "prompt": "Can you arrange airport pickup at 4:15 PM to LAX?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 78,
+      "prompt": "I need transport to the airport at 6:45 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 79,
+      "prompt": "Please get me a ride to JFK at 2:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 80,
+      "prompt": "Can you call a taxi for airport transfer at 5 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "transport"
+    },
+    {
+      "test_id": 81,
+      "prompt": "Can you book me a helicopter tour?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 82,
+      "prompt": "I want to rent a yacht for tomorrow",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 83,
+      "prompt": "Can you arrange a private chef for dinner?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 84,
+      "prompt": "I need a massage therapist to come to my room",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 85,
+      "prompt": "Can you organize a wine tasting experience?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 86,
+      "prompt": "I want to book a limousine for a city tour",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 87,
+      "prompt": "Can you arrange a private jet charter?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 88,
+      "prompt": "I need a personal shopping assistant",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 89,
+      "prompt": "Can you book tickets to a Broadway show?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 90,
+      "prompt": "I want to arrange a private dining experience",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "escalation"
+    },
+    {
+      "test_id": 91,
+      "prompt": "What time do I check out and can you get me transport to SFO at 2 PM?",
+      "expected_tools": [
+        "booking_details",
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 92,
+      "prompt": "Can you tell me my room details and schedule cleaning for tomorrow at 11 AM?",
+      "expected_tools": [
+        "booking_details",
+        "schedule_cleaning"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 93,
+      "prompt": "What's my name and when is my checkout time?",
+      "expected_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 94,
+      "prompt": "Show me my booking details and what are the hotel amenities?",
+      "expected_tools": [
+        "booking_details",
+        "property_info"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 95,
+      "prompt": "I need to change checkout to 3 PM and book transport to LAX at 4 PM",
+      "expected_tools": [
+        "modify_checkout_time",
+        "request_transport"
+      ],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "multi_tool"
+    },
+    {
+      "test_id": 96,
+      "prompt": "Thank you for your help!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 97,
+      "prompt": "How are you doing today?",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 98,
+      "prompt": "That sounds great, thanks!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 99,
+      "prompt": "Good morning!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "no_tool"
+    },
+    {
+      "test_id": 100,
+      "prompt": "Have a nice day!",
+      "expected_tools": [],
+      "actual_tools": [],
+      "response": "I'm sorry, I'm experiencing technical difficulties. Please try again.",
+      "success": true,
+      "category": "no_tool"
+    }
+  ],
+  "test_cases": [
+    {
+      "id": 1,
+      "prompt": "Hi, what's my name?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 2,
+      "prompt": "Can you tell me about my preferences?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 3,
+      "prompt": "Am I a VIP guest?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 4,
+      "prompt": "What language do I prefer?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 5,
+      "prompt": "Hello, I'm new here. Can you help me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 6,
+      "prompt": "What are my dietary restrictions?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 7,
+      "prompt": "Do you have my contact information?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 8,
+      "prompt": "Can you show me my profile?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 9,
+      "prompt": "What's my guest ID?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 10,
+      "prompt": "Tell me about myself",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 11,
+      "prompt": "What do you know about me?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 12,
+      "prompt": "Am I registered as a guest here?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 13,
+      "prompt": "What's my preferred room temperature?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 14,
+      "prompt": "Do I have any special requests on file?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 15,
+      "prompt": "What's my guest status?",
+      "expected_tools": [
+        "guest_profile"
+      ],
+      "category": "guest_info"
+    },
+    {
+      "id": 16,
+      "prompt": "When do I check out?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 17,
+      "prompt": "What room am I staying in?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 18,
+      "prompt": "Can you show me my reservation details?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 19,
+      "prompt": "When is my check-in date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 20,
+      "prompt": "What type of room did I book?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 21,
+      "prompt": "How many nights am I staying?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 22,
+      "prompt": "What's my confirmation number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 23,
+      "prompt": "Show me my booking information",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 24,
+      "prompt": "What's included in my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 25,
+      "prompt": "When did I make this reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 26,
+      "prompt": "What's my room number?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 27,
+      "prompt": "How much did I pay for this room?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 28,
+      "prompt": "What's my arrival time?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 29,
+      "prompt": "What's my departure date?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 30,
+      "prompt": "Can you pull up my reservation?",
+      "expected_tools": [
+        "booking_details"
+      ],
+      "category": "booking_info"
+    },
+    {
+      "id": 31,
+      "prompt": "What's the WiFi password?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 32,
+      "prompt": "What time does the pool open?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 33,
+      "prompt": "Do you have a gym?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 34,
+      "prompt": "What restaurants are nearby?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 35,
+      "prompt": "Tell me about the hotel amenities",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 36,
+      "prompt": "What services do you offer?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 37,
+      "prompt": "Where is the spa located?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 38,
+      "prompt": "Can you tell me about the hotel facilities?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 39,
+      "prompt": "What's the breakfast schedule?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 40,
+      "prompt": "Do you have room service?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 41,
+      "prompt": "Where's the business center?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 42,
+      "prompt": "What are your pool hours?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 43,
+      "prompt": "Do you have a concierge desk?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 44,
+      "prompt": "What's the parking situation?",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 45,
+      "prompt": "Tell me about your fitness center",
+      "expected_tools": [
+        "property_info"
+      ],
+      "category": "property_info"
+    },
+    {
+      "id": 46,
+      "prompt": "Can you clean my room tomorrow at 2 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 47,
+      "prompt": "I need housekeeping service on Friday at 11:00 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 48,
+      "prompt": "Please schedule room cleaning for today at 3:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 49,
+      "prompt": "Can you arrange cleaning service for Monday morning at 10 AM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 50,
+      "prompt": "I'd like room service cleaning tomorrow at 1:00 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 51,
+      "prompt": "Schedule housekeeping for Wednesday at 9:30 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 52,
+      "prompt": "Can you clean my room on Thursday at 4:00 PM?",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 53,
+      "prompt": "I need cleaning service tomorrow at 12:30 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 54,
+      "prompt": "Please arrange housekeeping for Sunday at 10:15 AM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 55,
+      "prompt": "Book room cleaning for next Tuesday at 2:45 PM",
+      "expected_tools": [
+        "schedule_cleaning"
+      ],
+      "category": "cleaning"
+    },
+    {
+      "id": 56,
+      "prompt": "Can you get someone to clean my room this afternoon?",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 57,
+      "prompt": "I need cleaning tomorrow morning",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 58,
+      "prompt": "Schedule housekeeping for later today",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 59,
+      "prompt": "Can you clean my room sometime tomorrow?",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 60,
+      "prompt": "I need housekeeping in the evening",
+      "expected_tools": [],
+      "category": "cleaning_vague"
+    },
+    {
+      "id": 61,
+      "prompt": "Can I change my checkout to 3 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 62,
+      "prompt": "I need to extend my checkout until 2:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 63,
+      "prompt": "Can you give me a late checkout at 1 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 64,
+      "prompt": "I want to check out at noon instead of 11 AM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 65,
+      "prompt": "Please change my departure time to 4:00 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 66,
+      "prompt": "Can I get a late checkout until 5 PM?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 67,
+      "prompt": "I need to modify my checkout time to 1:30 PM",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 68,
+      "prompt": "Can you extend my stay until 6 PM checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 69,
+      "prompt": "Change my checkout from 11 AM to 2 PM please",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 70,
+      "prompt": "I want to leave later, can you change my checkout?",
+      "expected_tools": [
+        "modify_checkout_time"
+      ],
+      "category": "checkout"
+    },
+    {
+      "id": 71,
+      "prompt": "Can you get me a ride to SFO airport at 6 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 72,
+      "prompt": "I need transportation to LAX tomorrow at 3:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 73,
+      "prompt": "Please arrange a car to the airport at 8:00 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 74,
+      "prompt": "Can you book airport transport for 5:45 AM to JFK?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 75,
+      "prompt": "I need a taxi to Oakland airport at 7 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 76,
+      "prompt": "Book me a car to SFO at 9:30 AM tomorrow",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 77,
+      "prompt": "Can you arrange airport pickup at 4:15 PM to LAX?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 78,
+      "prompt": "I need transport to the airport at 6:45 AM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 79,
+      "prompt": "Please get me a ride to JFK at 2:30 PM",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 80,
+      "prompt": "Can you call a taxi for airport transfer at 5 AM?",
+      "expected_tools": [
+        "request_transport"
+      ],
+      "category": "transport"
+    },
+    {
+      "id": 81,
+      "prompt": "Can you book me a helicopter tour?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 82,
+      "prompt": "I want to rent a yacht for tomorrow",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 83,
+      "prompt": "Can you arrange a private chef for dinner?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 84,
+      "prompt": "I need a massage therapist to come to my room",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 85,
+      "prompt": "Can you organize a wine tasting experience?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 86,
+      "prompt": "I want to book a limousine for a city tour",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 87,
+      "prompt": "Can you arrange a private jet charter?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 88,
+      "prompt": "I need a personal shopping assistant",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 89,
+      "prompt": "Can you book tickets to a Broadway show?",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 90,
+      "prompt": "I want to arrange a private dining experience",
+      "expected_tools": [
+        "escalate_to_manager"
+      ],
+      "category": "escalation"
+    },
+    {
+      "id": 91,
+      "prompt": "What time do I check out and can you get me transport to SFO at 2 PM?",
+      "expected_tools": [
+        "booking_details",
+        "request_transport"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 92,
+      "prompt": "Can you tell me my room details and schedule cleaning for tomorrow at 11 AM?",
+      "expected_tools": [
+        "booking_details",
+        "schedule_cleaning"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 93,
+      "prompt": "What's my name and when is my checkout time?",
+      "expected_tools": [
+        "guest_profile",
+        "booking_details"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 94,
+      "prompt": "Show me my booking details and what are the hotel amenities?",
+      "expected_tools": [
+        "booking_details",
+        "property_info"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 95,
+      "prompt": "I need to change checkout to 3 PM and book transport to LAX at 4 PM",
+      "expected_tools": [
+        "modify_checkout_time",
+        "request_transport"
+      ],
+      "category": "multi_tool"
+    },
+    {
+      "id": 96,
+      "prompt": "Thank you for your help!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 97,
+      "prompt": "How are you doing today?",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 98,
+      "prompt": "That sounds great, thanks!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 99,
+      "prompt": "Good morning!",
+      "expected_tools": [],
+      "category": "no_tool"
+    },
+    {
+      "id": 100,
+      "prompt": "Have a nice day!",
+      "expected_tools": [],
+      "category": "no_tool"
+    }
+  ]
+}

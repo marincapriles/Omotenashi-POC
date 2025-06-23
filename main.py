@@ -249,7 +249,7 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
         
         # Modern tool-calling agent for Claude native function calling
         prompt = ChatPromptTemplate.from_messages([
-            ("system", final_prompt + "\n\nREMEMBER: Use the MINIMUM number of tools needed. Most requests need only ONE tool."),
+            ("system", final_prompt + "\n\nCRITICAL: Use EXACTLY ONE tool per request unless the guest asks multiple distinct questions. STOP after using one tool."),
             ("placeholder", "{chat_history}"),
             ("human", "{input}"),
             ("placeholder", "{agent_scratchpad}"),
@@ -260,9 +260,10 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
             agent=agent, 
             tools=tools, 
             memory=memory_service.get_memory(phone),
-            verbose=True,
+            verbose=False,  # Disable verbose to improve performance
             handle_parsing_errors=True,
-            return_intermediate_steps=True  # Enable intermediate steps tracking
+            return_intermediate_steps=True,  # Enable intermediate steps tracking
+            max_execution_time=30  # Add timeout to prevent hanging
         )
     except Exception as e:
         logger.error(f"Error creating agent for phone {phone}: {e}")
@@ -341,7 +342,17 @@ async def handle_message(request: MessageRequest):
                             elif hasattr(action, 'log'):
                                 # Try to extract tool name from log
                                 log_text = action.log.lower()
-                                for tool in ["guest_profile", "booking_details", "property_info", "schedule_cleaning", "modify_checkout_time", "request_transport", "escalate_to_manager"]:
+                                all_tools = [
+                                    # Core tools
+                                    "guest_profile", "booking_details", "property_info", "schedule_cleaning", 
+                                    "modify_checkout_time", "request_transport", "escalate_to_manager",
+                                    # High-impact tools
+                                    "restaurant_reservation", "grocery_delivery", "maintenance_request", 
+                                    "activity_booking", "meal_delivery",
+                                    # Luxury tools
+                                    "spa_services", "private_chef", "local_recommendations"
+                                ]
+                                for tool in all_tools:
                                     if tool in log_text:
                                         tools_used.append(tool)
                                         logger.info(f"Tool detected from log: {tool}")
@@ -353,13 +364,26 @@ async def handle_message(request: MessageRequest):
                     
                     # Pattern-based tool detection (same as evaluation patterns)
                     tool_patterns = {
+                        # CORE TOOLS
                         "guest_profile": ["your name is", "you are", "vip guest", "carlos", "guest profile", "guest information"],
                         "booking_details": ["check out", "check-out", "reservation", "booking", "room type", "confirmation", "villa azul"],
                         "property_info": ["wifi", "pool", "gym", "amenities", "facilities", "restaurant", "spa", "property"],
                         "schedule_cleaning": ["cleaning scheduled", "housekeeping", "cleaning team", "room cleaning"],
                         "modify_checkout_time": ["checkout time", "checkout updated", "departure time", "late checkout"],
                         "request_transport": ["transport requested", "arranged your transportation", "car has been", "pickup", "airport"],
-                        "escalate_to_manager": ["escalated", "property manager", "get back to you"]
+                        "escalate_to_manager": ["escalated", "property manager", "get back to you"],
+                        
+                        # HIGH-IMPACT TOOLS
+                        "restaurant_reservation": ["reservation for", "restaurant", "dining", "table booked", "secured a reservation"],
+                        "grocery_delivery": ["grocery delivery", "groceries", "arranged grocery", "food supplies", "beverage delivery"],
+                        "maintenance_request": ["reported", "maintenance", "repair", "broken", "not working", "issue"],
+                        "activity_booking": ["arranged", "activity", "tour", "experience", "excursion", "booked"],
+                        "meal_delivery": ["ordered", "meal", "food delivery", "restaurant delivery", "takeout"],
+                        
+                        # LUXURY TOOLS
+                        "spa_services": ["spa", "massage", "wellness", "relaxation", "therapeutic"],
+                        "private_chef": ["private chef", "chef", "culinary", "dining experience", "meal preparation"],
+                        "local_recommendations": ["recommend", "suggest", "local", "area", "best", "options"]
                     }
                     
                     for tool_name, patterns in tool_patterns.items():
