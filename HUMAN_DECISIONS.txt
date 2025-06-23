@@ -21,8 +21,7 @@ Options:
 - Other (specify)
 
 DECISION: 
-
-
+I prefer GCP or other chaper alternative, but I don't have a strong preference
 
 DECISION-002: PILOT TIMELINE  
 Question: How many weeks until customer pilot launch?
@@ -33,7 +32,7 @@ Options:
 - 6-8 weeks (full feature set, maximum polish)
 
 DECISION:
-
+Let's give ourselves 8 weeks to create an effective realizatio of the concept. The most important pieces of the product is high qualtiy tool selection based on guest intent and successful execution of the workflows
 
 
 DECISION-003: SPANISH LANGUAGE SUPPORT
@@ -45,7 +44,7 @@ Options:
 - Deploy with warning about Spanish limitations
 
 DECISION:
-
+prioritize spanish fixes. I want to prioritize Latin America and Spain as potential markets for pilot customers
 
 
 DECISION-004: CONCURRENT USER CAPACITY
@@ -57,7 +56,7 @@ Options:
 - 50-100 guests (large property or multiple properties)
 
 DECISION:
-
+20 guests 
 
 
 ================================================================================
