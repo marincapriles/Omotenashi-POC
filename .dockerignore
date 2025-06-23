@@ -1,0 +1,114 @@
+# 🏨 Omotenashi Docker Ignore File
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Environment files
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose*.yml
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Development tools
+.pre-commit-config.yaml
+Makefile
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+
+# Database files (should be in volumes)
+*.db
+*.sqlite
+
+# Evaluation and testing files
+*evaluation*.py
+*test*.py
+*_results.txt
+*_analysis.txt
+comprehensive_*.py
+simple_*.py
+fixed_*.py
+quick_*.py
+
+# Coordination files (not needed in container)
+CLAUDE_*.md
+RYOKAN_*.md
+CONCIERGE_*.md
+*_WORKPLAN.md
+*COORDINATION*.md
+sync_check.py
+.claude_hooks/
+
+# Backup files
+*.bak
+*.backup

@@ -1,0 +1,111 @@
+# 🏨 Omotenashi Hotel Concierge - Development Environment
+version: '3.8'
+
+services:
+  # Main application
+  omotenashi-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-3-5-sonnet-20241022}
+      - DATABASE_URL=postgresql://omotenashi:concierge_secret@postgres:5432/omotenashi_db
+      - REDIS_URL=redis://redis:6379/0
+      - MEMORY_EXPIRY_HOURS=1
+      - PORT=8000
+      - ENVIRONMENT=development
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./static:/app/static
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=omotenashi_db
+      - POSTGRES_USER=omotenashi
+      - POSTGRES_PASSWORD=concierge_secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+
+  # Redis for Session Management
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # Nginx Reverse Proxy (Production-like setup)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/var/www/static:ro
+    depends_on:
+      - omotenashi-app
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+
+  # Database Administration
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@omotenashi.com
+      - PGADMIN_DEFAULT_PASSWORD=admin_secret
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+    profiles: ["admin"]  # Only start with --profile admin
+
+  # Redis Commander (Redis Administration)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - omotenashi-network
+    restart: unless-stopped
+    profiles: ["admin"]  # Only start with --profile admin
+
+networks:
+  omotenashi-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  pgadmin_data:
