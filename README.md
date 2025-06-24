@@ -48,6 +48,66 @@
 - Curated local recommendations
 
 ### **🏗️ Enterprise-Ready Infrastructure**
+- Clean, modular architecture with clear separation of concerns
+- Docker containerization ready for cloud deployment
+- PostgreSQL database schema with analytics views
+- JWT-based authentication with phone verification
+- Comprehensive monitoring and error tracking
+
+---
+
+## 📁 **Project Structure**
+
+```
+omotenashi-poc/
+├── src/                      # Core application code
+│   ├── api/                  # FastAPI backend & configuration
+│   ├── agents/               # AI agent logic (tools & prompts)
+│   ├── models/               # Data models (future expansion)
+│   └── utils/                # Utility functions
+│
+├── infrastructure/           # Deployment & DevOps
+│   ├── docker/               # Containerization files
+│   ├── nginx/                # Web server configuration
+│   ├── kubernetes/           # K8s manifests (future)
+│   └── terraform/            # Cloud infrastructure (future)
+│
+├── data/                     # Data management
+│   ├── demo/                 # Demo data (guests, bookings)
+│   ├── migrations/           # Database migrations
+│   └── vector_store/         # ChromaDB for property info
+│
+├── tests/                    # Comprehensive test suite
+│   ├── unit/                 # Unit tests
+│   ├── integration/          # Integration tests
+│   └── evaluation/           # Performance evaluations
+│       └── results/          # Test results & metrics
+│
+├── frontend/                 # Web interface
+│   ├── index.html            # Chat interface
+│   └── static/               # CSS, JS, images
+│
+├── docs/                     # Documentation
+│   ├── api/                  # API contracts
+│   ├── architecture/         # System design
+│   ├── deployment/           # Deployment guides
+│   └── development/          # Developer documentation
+│
+├── management/               # Project management
+│   ├── claude_coordination/  # Multi-Claude workflow
+│   ├── planning/             # Project plans & decisions
+│   └── analysis/             # Performance analysis
+│
+├── scripts/                  # Utility scripts
+│   ├── setup.sh              # Environment setup
+│   └── run.py                # Application runner
+│
+└── config/                   # Configuration files
+    ├── requirements.txt      # Python dependencies
+    └── .env.example          # Environment template
+```
+
+### **🏗️ Enterprise-Ready Infrastructure**
 - **Production Database**: PostgreSQL with comprehensive analytics
 - **Authentication System**: JWT-based phone verification with SMS
 - **Containerization**: Docker-ready for cloud deployment
@@ -148,9 +208,19 @@ create_tool_calling_agent(
 
 ### **Quick Technical Setup**
 ```bash
+# Clone repository
 git clone https://github.com/marincapriles/Omotenashi-POC.git
 cd Omotenashi-POC
-docker-compose up -d  # Complete system with database
+
+# Setup environment
+./scripts/setup.sh              # Install dependencies & configure environment
+cp config/.env.example .env     # Configure your API keys
+
+# Run with Docker (recommended)
+docker-compose -f infrastructure/docker/docker-compose.yml up -d
+
+# Or run locally
+python3 run.py                  # Starts on http://localhost:8000
 ```
 
 ---

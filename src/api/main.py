@@ -25,9 +25,9 @@ from langchain_chroma import Chroma
 from langchain_anthropic import ChatAnthropic
 
 # Local imports
-from config import MEMORY_EXPIRY_HOURS, ANTHROPIC_API_KEY, CLAUDE_MODEL, PORT
-from prompts import combine_prompts, format_guest_context, get_base_system_prompt, get_property_name_from_booking
-from tools import create_guest_tools
+from src.api.config import MEMORY_EXPIRY_HOURS, ANTHROPIC_API_KEY, CLAUDE_MODEL, PORT
+from src.agents.prompts import combine_prompts, format_guest_context, get_base_system_prompt, get_property_name_from_booking
+from src.agents.tools import create_guest_tools
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -52,8 +52,9 @@ app.add_middleware(
 )
 
 # Static file serving
-static_dir = os.path.join(os.path.dirname(__file__), "static")
-app.mount("/static", StaticFiles(directory=static_dir), name="static")
+static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # ----------------------------------------------------------------------------
 # Data Models
@@ -96,7 +97,7 @@ class VectorStoreService:
                 from langchain_community.embeddings import HuggingFaceEmbeddings
                 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
                 self._vectorstore = Chroma(
-                    persist_directory="chroma_db", 
+                    persist_directory="data/vector_store/chroma_db", 
                     embedding_function=embeddings
                 )
                 self._retriever = self._vectorstore.as_retriever(search_kwargs={"k": 4})
@@ -140,9 +141,9 @@ class GuestService:
     def _load_data(self):
         """Load guest and booking data from JSON files."""
         try:
-            with open("guests.json", "r", encoding="utf-8") as f:
+            with open("data/demo/guests.json", "r", encoding="utf-8") as f:
                 guests = json.load(f)
-            with open("bookings.json", "r", encoding="utf-8") as f:
+            with open("data/demo/bookings.json", "r", encoding="utf-8") as f:
                 bookings = json.load(f)
             
             self.guests_by_phone = {g["phone_number"]: g for g in guests}
@@ -276,7 +277,8 @@ def create_agent(phone: str, custom_prompt: Optional[str] = None):
 @app.get("/")
 async def serve_frontend():
     """Serve the frontend application."""
-    return FileResponse(os.path.join(static_dir, "index.html"))
+    frontend_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "index.html")
+    return FileResponse(frontend_path)
 
 @app.get("/guest_profile/all")
 async def get_all_guests():

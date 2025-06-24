@@ -9,7 +9,7 @@ from typing import List
 from langchain.tools import StructuredTool
 from pydantic import BaseModel, Field
 
-from prompts import TOOL_DESCRIPTIONS
+from src.agents.prompts import TOOL_DESCRIPTIONS
 
 # Configure logging
 logger = logging.getLogger(__name__)
