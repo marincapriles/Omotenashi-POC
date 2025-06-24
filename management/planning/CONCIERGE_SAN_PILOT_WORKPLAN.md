@@ -244,7 +244,29 @@ GitHub Repository
 
 ---
 
-**Last Updated**: 2025-12-22  
-**Priority**: Phase 1 Foundation (Production Infrastructure)  
-**Goal**: Customer pilot deployment readiness in 4-6 weeks  
-**Success Metric**: Production-ready system with 99.5% uptime capability
+## 🎖️ **DevOps Leadership Responsibilities** (New Role)
+
+### **Multi-Claude Instance Management**
+- **Repository Organization**: Maintain clean branch structure, prevent merge conflicts
+- **Workflow Enforcement**: Ensure both instances follow Git workflow protocols
+- **Code Standards**: Organize project structure, maintain naming conventions
+- **Documentation Sync**: Keep all coordination documents up-to-date
+- **Environment Health**: Regular cleanup, performance monitoring
+
+### **Regular DevOps Tasks** 
+- **Daily**: Branch cleanup, sync validation, performance checks
+- **Weekly**: Repository organization review, workflow optimization
+- **Monthly**: Infrastructure health assessment, standards update
+
+### **Coordination Excellence**
+- Monitor Ryokan-chan's needs for infrastructure support
+- Proactively identify and resolve development bottlenecks
+- Maintain high-quality development environment for all instances
+- Ensure seamless collaboration and knowledge sharing
+
+---
+
+**Last Updated**: 2025-06-24  
+**Priority**: Phase 1 Foundation + DevOps Leadership  
+**Goal**: Customer pilot deployment readiness in 8 weeks + maintain development excellence  
+**Success Metric**: Production-ready system with 99.5% uptime + efficient Claude collaboration
